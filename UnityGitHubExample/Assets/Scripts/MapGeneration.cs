@@ -88,12 +88,8 @@ public class MapGeneration : MonoBehaviour {
         { 1,0,0,0,0,0,0,0,0,1,1,0,0,0,0,0,0,0,0,0,0,1,1,1,1,0,0,0,0,0,0,0,1,0,0,1,0,0,1,0,0,1,0,0,0,0,0,1 },
         { 1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1 }
     };
-    public float derp;
 
     void Awake(){
-        derp = baseMap.GetLength(0);
-
-
         //x,y coordinates
         float x, y;
         for (int i = 0;i<baseMap.GetLength(0)/ scaleFactor; i++) {
