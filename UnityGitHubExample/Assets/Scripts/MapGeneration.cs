@@ -57,10 +57,10 @@ public class MapGeneration : MonoBehaviour {
         float x, y;
         gridPossitions = new Vector3[baseMap.GetLength(0), baseMap.GetLength(1)];
         for (int i = 0;i<baseMap.GetLength(0); i++) {
-            //new x coordinate with size taken into account
+            //new x coordinate with scale taken into account
             y = i * scaleFactor + scaleFactor / 2 + mapPossition.y;
             for (int j = 0; j < baseMap.GetLength(1); j++){
-                //new y coordinate with size taken into account
+                //new y coordinate with scale taken into account
                 x = j * scaleFactor + scaleFactor / 2 + mapPossition.x;
                 //saves the current coordinate in an accessable list for the purpose of spawning stuff later
                 gridPossitions[i, j] = new Vector3(x,y,0);
