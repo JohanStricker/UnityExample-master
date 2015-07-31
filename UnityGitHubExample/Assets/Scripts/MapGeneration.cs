@@ -6,7 +6,7 @@ public class MapGeneration : MonoBehaviour {
 
     //desired wall prefab to be initiated
     public GameObject wall;
-    //possition of entire map(top left corner)
+    //possition of entire map(be advised that since the map spawns in the top left corner, y is inverted)
     public Vector2 mapPossition = new Vector2(0, 0);
     //Scale factor, use this value, when scaling the wall prefab(prefab.scale.vector(xyz) * scale factor), to ensure that map respects the size of the given prefab
     float scaleFactor = 1;
