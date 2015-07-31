@@ -60,8 +60,10 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\Scripts\Actor.cs" />
+    <Compile Include="Assets\Scripts\Fluent.cs" />
+    <Compile Include="Assets\Scripts\GlobalConstants.cs" />
     <Compile Include="Assets\Scripts\MapGeneration.cs" />
-    <Compile Include="Assets\Scripts\dostuff.cs" />
+    <Compile Include="Assets\Scripts\Mechanic.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\Miscellaneous\The Map in txt.txt" />
