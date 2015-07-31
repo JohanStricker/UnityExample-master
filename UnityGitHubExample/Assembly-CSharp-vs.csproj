@@ -46,6 +46,7 @@
 	</Reference>
   </ItemGroup>
   <ItemGroup>
+     <Compile Include="Assets\Scripts\MapGeneration.cs" />
      <Compile Include="Assets\Scripts\dostuff.cs" />
  <Reference Include="UnityEngine.UI">
  <HintPath>C:/Users/Johan/AAU/Bachelor/UnityV4/Editor/Data/UnityExtensions/Unity/GUISystem/4.6.7/Standalone/UnityEngine.UI.dll</HintPath>
