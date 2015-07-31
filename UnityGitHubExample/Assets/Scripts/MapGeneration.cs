@@ -10,7 +10,10 @@ public class MapGeneration : MonoBehaviour {
     
 
     //the static map
-   
+    private byte[,] codes = new byte[,]
+	{
+	    
+	};
 
 
     //using awake to make sure that the map gets made as the absolute first thing
