@@ -8,8 +8,8 @@ public class MapGeneration : MonoBehaviour {
     public GameObject wall;
     //possition of entire map(be advised that since the map spawns in the top left corner, y is inverted)
     public Vector2 mapPossition = new Vector2(0, 0);
-    //Scale factor, use this value, when scaling the wall prefab(prefab.scale.vector(xyz) * scale factor), to ensure that map respects the size of the given prefab
-    float scaleFactor = 1;
+    //Scale factor, set it to be the same number as the scale of the wall prefab
+    public float scaleFactor = 1;
     //List of added walls
     public List<GameObject> placedWalls = new List<GameObject>();
     //the map of coordinates(2d array for easy to find possitions)
@@ -56,10 +56,10 @@ public class MapGeneration : MonoBehaviour {
         
         float x, y;
         gridPossitions = new Vector3[baseMap.GetLength(0), baseMap.GetLength(1)];
-        for (int i = 0;i<baseMap.GetLength(0)/ scaleFactor; i++) {
+        for (int i = 0;i<baseMap.GetLength(0); i++) {
             //new x coordinate with size taken into account
             y = i * scaleFactor + scaleFactor / 2 + mapPossition.y;
-            for (int j = 0; j < baseMap.GetLength(1) / scaleFactor; j++){
+            for (int j = 0; j < baseMap.GetLength(1); j++){
                 //new y coordinate with size taken into account
                 x = j * scaleFactor + scaleFactor / 2 + mapPossition.x;
                 //saves the current coordinate in an accessable list for the purpose of spawning stuff later
