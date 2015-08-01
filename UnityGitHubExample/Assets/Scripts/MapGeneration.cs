@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 
 public class MapGeneration : MonoBehaviour {
-
+    
     //desired wall prefab to be initiated
     public GameObject wall;
     //possition of entire map(be advised that since the map spawns in the top left corner, y is inverted)
@@ -54,25 +54,29 @@ public class MapGeneration : MonoBehaviour {
     };
 
     void Awake(){
-        
         float x, y;
         gridPossitions = new Vector3[baseMap.GetLength(0), baseMap.GetLength(1)];
         placedWalls = new GameObject[baseMap.GetLength(0), baseMap.GetLength(1)];
-        for (int i = 0;i<baseMap.GetLength(0); i++) {
+        for (int i = 0; i < baseMap.GetLength(0); i++){
             //new x coordinate with scale taken into account
             y = i * scaleFactor + scaleFactor / 2 + mapPossition.y;
             for (int j = 0; j < baseMap.GetLength(1); j++){
                 //new y coordinate with scale taken into account
                 x = j * scaleFactor + scaleFactor / 2 + mapPossition.x;
                 //saves the current coordinate in an accessable list for the purpose of spawning stuff later
-                gridPossitions[i, j] = new Vector3(x,y,0);
+                gridPossitions[i, j] = new Vector3(x, y, 0);
                 //Adds a wall, according to values from the baseMap
-                if (baseMap[i, j] == 1) {
+                if (baseMap[i, j] == 1)
+                {
                     placedWalls[i, j] = (GameObject)Instantiate(wall, new Vector3(x, -y, 0), Quaternion.identity);
                 }
             }
         }
     }
+
+    public void GenerateMap(){
+        
+    } 
 
 	// Use this for initialization
 	void Start () {
