@@ -64,6 +64,7 @@
     <Compile Include="Assets\Scripts\GlobalConstants.cs" />
     <Compile Include="Assets\Scripts\MapGeneration.cs" />
     <Compile Include="Assets\Scripts\Mechanic.cs" />
+    <Compile Include="Assets\Scripts\Movement.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\Miscellaneous\The Map in txt.txt" />

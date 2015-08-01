@@ -11,7 +11,8 @@ public class MapGeneration : MonoBehaviour {
     //Scale factor, set it to be the same number as the scale of the wall prefab
     public float scaleFactor = 1;
     //List of added walls
-    public List<GameObject> placedWalls = new List<GameObject>();
+    //2D array of placedWalls
+    public GameObject[,] placedWalls;
     //the map of coordinates(2d array for easy to find possitions)
     public Vector3[,] gridPossitions;
     //the static map(change it here and rest is take care of)
@@ -56,6 +57,7 @@ public class MapGeneration : MonoBehaviour {
         
         float x, y;
         gridPossitions = new Vector3[baseMap.GetLength(0), baseMap.GetLength(1)];
+        placedWalls = new GameObject[baseMap.GetLength(0), baseMap.GetLength(1)];
         for (int i = 0;i<baseMap.GetLength(0); i++) {
             //new x coordinate with scale taken into account
             y = i * scaleFactor + scaleFactor / 2 + mapPossition.y;
@@ -66,7 +68,7 @@ public class MapGeneration : MonoBehaviour {
                 gridPossitions[i, j] = new Vector3(x,y,0);
                 //Adds a wall, according to values from the baseMap
                 if (baseMap[i, j] == 1) {
-                    placedWalls.Add((GameObject)Instantiate(wall, new Vector3(x, -y, 0), Quaternion.identity)); 
+                    placedWalls[i, j] = (GameObject)Instantiate(wall, new Vector3(x, -y, 0), Quaternion.identity);
                 }
             }
         }
