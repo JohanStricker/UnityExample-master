@@ -37,4 +37,15 @@ public class Mechanic {
                             });
         }
     }
+
+    public void CheckTrigger()
+    {
+        if (Trigger.Value)
+            Do();
+    }
+
+    public virtual void Do()
+    {
+        // Do the mechanic stuff - override this
+    }
 }
