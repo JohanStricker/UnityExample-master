@@ -60,6 +60,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\Scripts\Actor.cs" />
+    <Compile Include="Assets\Scripts\AddActor.cs" />
     <Compile Include="Assets\Scripts\Fluent.cs" />
     <Compile Include="Assets\Scripts\GameManager.cs" />
     <Compile Include="Assets\Scripts\GlobalConstants.cs" />
@@ -67,6 +68,7 @@
     <Compile Include="Assets\Scripts\Mechanic.cs" />
     <Compile Include="Assets\Scripts\Method.cs" />
     <Compile Include="Assets\Scripts\Movement.cs" />
+    <Compile Include="Assets\Scripts\RemoveActor.cs" />
     <Compile Include="Assets\Scripts\Timer.cs" />
     <Compile Include="Assets\Scripts\Unit.cs" />
     <Compile Include="Assets\Scripts\_tester.cs" />
