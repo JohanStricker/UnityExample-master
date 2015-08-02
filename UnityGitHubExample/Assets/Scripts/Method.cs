@@ -1,13 +1,27 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-enum Affected { CallingActor, Global, OtherActor};
-
 public class Method
 {
+    
+    public Method()
+    {
+        // Construct
+    }
 
-    // Which to affect
-    Affected WhatToAffect;
-    Actor AffectedActor;
+    public virtual void Do()
+    {
+        // Do the method
+    }
+
+    public virtual void Do(Vector2 v)
+    {
+
+    }
+
+    public virtual void Do(ref Actor a)
+    {
+        // Do the method
+    }
 
 }
