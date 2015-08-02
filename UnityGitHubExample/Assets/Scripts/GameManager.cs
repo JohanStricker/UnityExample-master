@@ -3,6 +3,33 @@ using System.Collections;
 using System.Collections.Generic;
 
 public class GameManager : MonoBehaviour {
+
+    public List<Actor> ActorBlueprints;  // Do somehow else than Actor class list
+
+    public List<float> Variables;
+    public List<Actor> Actors;
+    public List<GameObject> ActorGameobjs;
+ 
+    public void AddActor(int chosenBlueprint, Vector2 pos)
+    {
+        // Adds an actor
+
+    }
+
+    public void RemoveActor(ref Actor toRemove)
+    {
+        // Removes an actor
+        for (int i = 0; i < Actors.Count; i++)
+        {
+            if (Actors[i].Equals(toRemove))
+            {
+                Destroy(ActorGameobjs[i]);
+                Actors.RemoveAt(i);
+                ActorGameobjs.RemoveAt(i);
+            }
+        }
+    }
+
     //the one to rule them all
     private static GameManager _instance;
 
