@@ -2,7 +2,29 @@
 using System.Collections;
 using System.Collections.Generic;
 
-public class GameGen  {
+public sealed class GameGen  {
+
+    public GameManager GMgr;
+
+    private static readonly GameGen instance = new GameGen();
+
+    // Explicit static constructor to tell C# compiler
+    // not to mark type as beforefieldinit
+    static GameGen()
+    {
+    }
+
+    private GameGen()
+    {
+    }
+
+    public static GameGen Instance
+    {
+        get
+        {
+            return instance;
+        }
+    }
 
     public void GenerateGame(Genome g)
     {
@@ -12,7 +34,7 @@ public class GameGen  {
         // Add Actors
         foreach (List<int> blueprint in g.ActorBlueprints)
         {
-            GameManager.Instance.ActorBlueprints.Add(blueprint);
+            GMgr.ActorBlueprints.Add(blueprint);
         }
         Debug.Log("GameGen/GenerateGame: Blueprints added to GameManager");
 
@@ -32,7 +54,7 @@ public class GameGen  {
                 if (locIter < g.Locations.Count-1)
                 {
                     Vector2 pos = new Vector2((float)g.Locations[locIter], (float)g.Locations[locIter+1]);
-                    GameManager.Instance.AddActor(whichActor, pos);
+                    GMgr.AddActor(whichActor, pos);
 
                     locIter += 2;
                 }

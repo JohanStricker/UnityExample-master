@@ -11,7 +11,7 @@ public class AddActor : Method {
 
     public override void Do(Vector2 v)
     {
-        GameManager.Instance.AddActor(_chosenBlueprint, v);
+      //  GameManager.Instance.AddActor(_chosenBlueprint, v);
     }
 
     
