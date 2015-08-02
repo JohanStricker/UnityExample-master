@@ -30,7 +30,7 @@ public class GameManager : MonoBehaviour {
         }
 
 
-
+        Debug.Log(mapGen);
         if (pos.x < 0 || pos.x >= mapGen.placedWalls.GetLength(0) || pos.y < 0 || pos.y >= mapGen.placedWalls.GetLength(1))
         {
             Debug.Log("GameManager/AddActor: Actor placed outside map");
