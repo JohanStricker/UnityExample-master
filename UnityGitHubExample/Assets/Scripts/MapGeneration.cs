@@ -54,6 +54,11 @@ public class MapGeneration : MonoBehaviour {
     };
 
     void Awake(){
+        GenerateMap();
+
+    }
+
+    public void GenerateMap(){
         float x, y;
         gridPossitions = new Vector3[baseMap.GetLength(0), baseMap.GetLength(1)];
         placedWalls = new GameObject[baseMap.GetLength(0), baseMap.GetLength(1)];
@@ -72,10 +77,6 @@ public class MapGeneration : MonoBehaviour {
                 }
             }
         }
-    }
-
-    public void GenerateMap(){
-        
     } 
 
 	// Use this for initialization
@@ -87,4 +88,6 @@ public class MapGeneration : MonoBehaviour {
 	void Update () {
 	
 	}
+
+    
 }

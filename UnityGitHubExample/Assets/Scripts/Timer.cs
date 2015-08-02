@@ -7,31 +7,23 @@ using System.Text;
 
 public class Timer{
 
-    float _resetTime;
-    float _durationTime;
-    int _maxTicks;
-    bool _singleTick;
+    float savedTime;
+    float totalTime;
 
-    public Timer(bool sT, float dT, int mT/*,do method*/) {
-        _durationTime = dT;
-        _resetTime = _durationTime;
-        _singleTick = sT;
-        _maxTicks = mT;
+    public Timer(float tempTotalTime) {
+        totalTime = tempTotalTime;
     }
 
-    public void RunTimer(){
+    public void Start(){
+        savedTime = Time.time;   
+    }
 
-        if (_durationTime <= 0.0f){
-            
-            //do method
-
-            //run once or multiple times at
-            if (!_singleTick){
-                _durationTime = _resetTime;
-
-            }
+    public bool isfinished() {
+        float passedTime = Time.time - savedTime;
+        if (passedTime > totalTime){
+            return true;
+        }else{
+            return false;
         }
     }
-
-
 }
