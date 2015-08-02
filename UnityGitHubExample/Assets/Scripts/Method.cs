@@ -13,7 +13,6 @@ public class Method
     {
         // Do the method
     }
-
     public virtual void Do(Vector2 v)
     {
 

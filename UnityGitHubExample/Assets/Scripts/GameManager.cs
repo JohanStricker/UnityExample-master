@@ -4,16 +4,42 @@ using System.Collections.Generic;
 
 public class GameManager : MonoBehaviour {
 
-    public List<Actor> ActorBlueprints;  // Do somehow else than Actor class list
+
+    public GameObject ActorPrefab;
+    public List<List<int>> ActorBlueprints;  // Do somehow else than Actor class list
 
     public List<float> Variables;
     public List<Actor> Actors;
     public List<GameObject> ActorGameobjs;
- 
-    public void AddActor(int chosenBlueprint, Vector2 pos)
+    public int NumNonExistantActorsAdded = 0;
+    public int NumActorsAddedOnStatic = 0;
+
+    public MapGeneration mapGen;
+
+    public void AddActor(int whichActor, Vector2 pos)
     {
         // Adds an actor
 
+        // Count and return if non-existant actor tried added
+        if (whichActor < 0 || whichActor >= ActorBlueprints.Count)
+        {
+            NumNonExistantActorsAdded++;
+            return;
+        }
+
+
+        // Count and return if tried to add on static map part
+        if (mapGen.placedWalls[(int) pos.x, (int) pos.y] != null)
+        {
+            NumActorsAddedOnStatic++;
+            return;
+        }
+            
+        // Instantiate and add gameobject
+        ActorGameobjs.Add(Instantiate(ActorPrefab, new Vector3(pos.x, pos.y, 0), Quaternion.identity) as GameObject);
+
+        // Tie events to methods/mechanics
+        Actors.Add(new Actor());
     }
 
     public void RemoveActor(ref Actor toRemove)
@@ -63,8 +89,8 @@ public class GameManager : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-        
-	}
+        mapGen = GameObject.FindGameObjectWithTag("GameManager").GetComponent<MapGeneration>();
+    }
 	
 	// Update is called once per frame
 	void Update () {
