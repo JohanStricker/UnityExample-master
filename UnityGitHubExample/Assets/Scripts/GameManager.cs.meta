@@ -2,7 +2,9 @@ fileFormatVersion: 2
 guid: 54966d4b221e0fe4c86b0ccf646b7612
 MonoImporter:
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - ActorPrefab: {fileID: 186900, guid: b982d15dd9f5999439d50d15a2f531e3, type: 2}
+  - mapGen: {instanceID: 0}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 

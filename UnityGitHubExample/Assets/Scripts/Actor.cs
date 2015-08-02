@@ -3,6 +3,6 @@ using System.Collections;
 using System;
 using System.Collections.Generic;
 
-public class Actor : MonoBehaviour {
+public class Actor {
     
 }

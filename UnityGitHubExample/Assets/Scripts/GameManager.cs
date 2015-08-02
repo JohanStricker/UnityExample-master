@@ -6,13 +6,14 @@ public class GameManager : MonoBehaviour {
 
 
     public GameObject ActorPrefab;
-    public List<List<int>> ActorBlueprints;  // Do somehow else than Actor class list
+    public List<List<int>> ActorBlueprints = new List<List<int>>();  // Do somehow else than Actor class list
 
     public List<float> Variables;
-    public List<Actor> Actors;
-    public List<GameObject> ActorGameobjs;
+    public List<Actor> Actors = new List<Actor>();
+    public List<GameObject> ActorGameobjs = new List<GameObject>();
     public int NumNonExistantActorsAdded = 0;
     public int NumActorsAddedOnStatic = 0;
+    public int NumActorsAddedOutsideMap = 0;
 
     public MapGeneration mapGen;
 
@@ -23,14 +24,24 @@ public class GameManager : MonoBehaviour {
         // Count and return if non-existant actor tried added
         if (whichActor < 0 || whichActor >= ActorBlueprints.Count)
         {
+            Debug.Log("GameManager/AddActor: Actor does not exist");
             NumNonExistantActorsAdded++;
             return;
         }
 
 
+
+        if (pos.x < 0 || pos.x >= mapGen.placedWalls.GetLength(0) || pos.y < 0 || pos.y >= mapGen.placedWalls.GetLength(1))
+        {
+            Debug.Log("GameManager/AddActor: Actor placed outside map");
+            NumActorsAddedOutsideMap++;
+            return;
+        }
+
         // Count and return if tried to add on static map part
         if (mapGen.placedWalls[(int) pos.x, (int) pos.y] != null)
         {
+            Debug.Log("GameManager/AddActor: Actor placed on wall");
             NumActorsAddedOnStatic++;
             return;
         }
@@ -40,6 +51,7 @@ public class GameManager : MonoBehaviour {
 
         // Tie events to methods/mechanics
         Actors.Add(new Actor());
+        Debug.Log("GameManager/AddActor: Actor added");
     }
 
     public void RemoveActor(ref Actor toRemove)
@@ -55,36 +67,10 @@ public class GameManager : MonoBehaviour {
             }
         }
     }
-
-    //the one to rule them all
-    private static GameManager _instance;
-
-    //used by other classes to access this manager
-    public static GameManager Instance { get; private set; }
-    /*public static GameManager instance{
-        get {
-            if (_instance == null){
-                _instance = GameObject.FindObjectOfType<GameManager>();
-                DontDestroyOnLoad(_instance.gameObject);
-            }
-            return _instance;
-        }
-    }*/
+    
     
     void Awake() {
-        if (Instance != null && Instance != this)
-        {
-            // If that is the case, we destroy other instances
-            Destroy(gameObject);
-        }
-
-        // Here we save our singleton instance
-        Instance = this;
-
-        // Furthermore we make sure that we don't destroy between scenes (this is optional)
-        DontDestroyOnLoad(gameObject);
-
-
+        GameGen.Instance.GMgr = this;
     }
 
 	// Use this for initialization

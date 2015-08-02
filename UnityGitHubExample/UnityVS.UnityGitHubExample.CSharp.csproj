@@ -63,6 +63,7 @@
     <Compile Include="Assets\Scripts\Fluent.cs" />
     <Compile Include="Assets\Scripts\GameGen.cs" />
     <Compile Include="Assets\Scripts\GameManager.cs" />
+    <Compile Include="Assets\Scripts\Genetic\GeneTest.cs" />
     <Compile Include="Assets\Scripts\Genetic\Genome.cs" />
     <Compile Include="Assets\Scripts\GlobalConstants.cs" />
     <Compile Include="Assets\Scripts\MapGeneration.cs" />

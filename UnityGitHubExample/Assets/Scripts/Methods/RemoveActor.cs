@@ -5,6 +5,6 @@ public class RemoveActor : Method {
     
     public override void Do(ref Actor a)
     {
-        GameManager.Instance.RemoveActor(ref a);
+       // GameManager.Instance.RemoveActor(ref a);
     }
 }
