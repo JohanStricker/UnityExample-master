@@ -15,10 +15,10 @@ public class GeneTest : MonoBehaviour {
         g.Locations = new List<int>();
 
         g.ActorBlueprints[0].Add(1);
-        g.ActorBlueprints[0].Add(2);
+        g.ActorBlueprints[0].Add(1);
         g.ActorBlueprints[0].Add(3);
 
-        g.ActorBlueprints[1].Add(4);
+        g.ActorBlueprints[1].Add(0);
         g.ActorBlueprints[1].Add(5);
         g.ActorBlueprints[1].Add(6);
 
@@ -51,6 +51,6 @@ public class GeneTest : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-	
+	    
 	}
 }

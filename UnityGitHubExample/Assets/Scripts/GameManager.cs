@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using System.Linq;
 using System.Collections;
 using System.Collections.Generic;
 
@@ -11,6 +12,7 @@ public class GameManager : MonoBehaviour {
     public List<float> Variables;
     public List<Actor> Actors = new List<Actor>();
     public List<GameObject> ActorGameobjs = new List<GameObject>();
+    public int NumActors = 0;
     public int NumNonExistantActorsAdded = 0;
     public int NumActorsAddedOnStatic = 0;
     public int NumActorsAddedOutsideMap = 0;
@@ -47,10 +49,12 @@ public class GameManager : MonoBehaviour {
         }
             
         // Instantiate and add gameobject
-        ActorGameobjs.Add(Instantiate(ActorPrefab, new Vector3(pos.x, pos.y, 0), Quaternion.identity) as GameObject);
-
+        ActorGameobjs.Add(Instantiate(ActorPrefab, new Vector3(pos.x, -pos.y, 0), Quaternion.identity) as GameObject);
+        Actors.Add(ActorGameobjs.Last().GetComponent<Actor>());
+        Actors.Last().Setup(ActorBlueprints[whichActor]);
+        Actors.Last().ID = NumActors;
+        NumActors++;
         // Tie events to methods/mechanics
-        Actors.Add(new Actor());
         Debug.Log("GameManager/AddActor: Actor added");
     }
 
@@ -80,6 +84,12 @@ public class GameManager : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-	
+	    if(Input.GetKeyDown(KeyCode.W))
+        {
+            foreach (Actor a in Actors)
+            {
+                a.OnW();
+            }
+        }
 	}
 }
