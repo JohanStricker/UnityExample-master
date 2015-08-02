@@ -2,8 +2,7 @@
 using System.Collections;
 
 public class AddActor : Method {
-
-    private Actor ActorToAdd;
+    
     private int _chosenBlueprint;
 
 	public AddActor(int chosenBlueprint)

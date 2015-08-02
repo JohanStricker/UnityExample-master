@@ -75,6 +75,11 @@ public class MapGeneration : MonoBehaviour {
                 {
                     placedWalls[i, j] = (GameObject)Instantiate(wall, new Vector3(x, -y, 0), Quaternion.identity);
                 }
+                else
+                {
+                    placedWalls[i, j] = null;
+                }
+            
             }
         }
     } 
