@@ -60,10 +60,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\Scripts\Actor.cs" />
-<<<<<<< HEAD
-=======
-    <Compile Include="Assets\Scripts\AddActor.cs" />
->>>>>>> a6c6c3f93daf53e2418146d5ac0d28e15bed0c9c
     <Compile Include="Assets\Scripts\Fluent.cs" />
     <Compile Include="Assets\Scripts\GameGen.cs" />
     <Compile Include="Assets\Scripts\GameManager.cs" />
@@ -72,19 +68,12 @@
     <Compile Include="Assets\Scripts\MapGeneration.cs" />
     <Compile Include="Assets\Scripts\Mechanic.cs" />
     <Compile Include="Assets\Scripts\Method.cs" />
-<<<<<<< HEAD
     <Compile Include="Assets\Scripts\Methods\AddActor.cs" />
     <Compile Include="Assets\Scripts\Methods\Movement.cs" />
     <Compile Include="Assets\Scripts\Methods\RemoveActor.cs" />
     <Compile Include="Assets\Scripts\Timer.cs" />
     <Compile Include="Assets\Scripts\Unit.cs" />
-=======
-    <Compile Include="Assets\Scripts\Movement.cs" />
-    <Compile Include="Assets\Scripts\RemoveActor.cs" />
-    <Compile Include="Assets\Scripts\Timer.cs" />
-    <Compile Include="Assets\Scripts\Unit.cs" />
     <Compile Include="Assets\Scripts\_tester.cs" />
->>>>>>> a6c6c3f93daf53e2418146d5ac0d28e15bed0c9c
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\Miscellaneous\The Map in txt.txt" />
