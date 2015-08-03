@@ -64,6 +64,8 @@ public class GameManager : MonoBehaviour {
 
     public void RemoveActor(ref Actor toRemove)
     {
+        //event
+        toRemove.OnDestroy();
         // Removes an actor
         for (int i = 0; i < Actors.Count; i++)
         {
@@ -88,12 +90,6 @@ public class GameManager : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-	    if(Input.GetKeyDown(KeyCode.W))
-        {
-            foreach (Actor a in Actors)
-            {
-                a.OnW();
-            }
-        }
+	    
 	}
 }
