@@ -25,7 +25,14 @@ public sealed class GlobalConstants {
 
     public const float FloatComparisonDifference = 0.000001f;
 
-    // Control debugging
-    public const bool DebugFluents = true;
-    public const bool DebugMechanics = true;
+
+
+    // Genome Stuff
+    public const int ActorCountMin = 1;
+    public const int ActorCountMax = 10;
+
+    public const int ActorBlueprintEventCount = 16;
+    public const int ActorBlueprintVariableCount = 12;
+
+    public const int GlobalVariablesCount = 20; // 5 float, 5 bool, 5 vector
 }

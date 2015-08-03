@@ -14,9 +14,10 @@ public class GeneTest : MonoBehaviour {
         g.ActorCounts = new List<int>();
         g.Locations = new List<int>();
 
-        g.ActorBlueprints[0].Add(1);
+        g.ActorBlueprints[0].Add(1);        // Events
         g.ActorBlueprints[0].Add(1);
         g.ActorBlueprints[0].Add(3);
+                                            // Variables 3 bool, 3 float, 3 vector = 12 variables in total
 
         g.ActorBlueprints[1].Add(0);
         g.ActorBlueprints[1].Add(5);
