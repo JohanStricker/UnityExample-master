@@ -26,7 +26,7 @@ public class GeneTest : MonoBehaviour {
         g.ActorCounts.Add(4);   // Add 4
 
         g.ActorCounts.Add(1);   // second actor
-        g.ActorCounts.Add(3);   // add 3
+        g.ActorCounts.Add(10);   // add 3
 
         g.Locations.Add(10);
         g.Locations.Add(20);
@@ -44,6 +44,13 @@ public class GeneTest : MonoBehaviour {
         g.Locations.Add(12);
         g.Locations.Add(0);
         g.Locations.Add(4);
+        g.Locations.Add(28);
+        g.Locations.Add(4);
+        g.Locations.Add(13);
+        g.Locations.Add(43);
+        g.Locations.Add(25);
+        g.Locations.Add(25);
+
 
         GameGen.Instance.GenerateGame(g);
 

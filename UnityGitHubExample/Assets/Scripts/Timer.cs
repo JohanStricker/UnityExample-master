@@ -10,6 +10,7 @@ public class Timer{
     float savedTime;
     float totalTime;
 
+    // time in desired seconds
     public Timer(float tempTotalTime) {
         totalTime = tempTotalTime;
     }
