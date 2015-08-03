@@ -21,6 +21,7 @@ public class GameManager : MonoBehaviour {
     public int NumActorsAddedOutsideMap = 0;
 
     public MapGeneration mapGen;
+ 
 
     public void AddActor(int whichActor, Vector2 pos)
     {
