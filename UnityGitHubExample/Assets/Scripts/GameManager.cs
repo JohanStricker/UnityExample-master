@@ -9,7 +9,10 @@ public class GameManager : MonoBehaviour {
     public GameObject ActorPrefab;
     public List<List<int>> ActorBlueprints = new List<List<int>>();  // Do somehow else than Actor class list
 
-    public List<float> Variables;
+    public List<bool>  BVariables;
+    public List<float> FVariables;
+    public List<Vector2> VVariables;
+
     public List<Actor> Actors = new List<Actor>();
     public List<GameObject> ActorGameobjs = new List<GameObject>();
     public int NumActors = 0;

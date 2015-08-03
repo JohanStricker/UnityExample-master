@@ -22,6 +22,8 @@ public class Method
 
     public Actor CallingActor;
 
+    public GameManager GMgr;
+
     public int ID;
 
     public Method()
