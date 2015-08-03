@@ -30,7 +30,7 @@ public class Genome {
                                              // Stripped to multiples of 2
 
 
-    public List<int> Methods;               // method_type | 3 vars denoting where inputs come from | 1 var denoting where output goes
+    public List<int> Methods;               // method_type | 3 vars denoting where inputs come from | 1 var denoting where output  | 1 var for ID of other actor
                                             // | 3 vars denoting where in the array @ input loc, the input comes from | same but for output
                                             // | 3 constants
                                             // Stripped to multiples of 12
