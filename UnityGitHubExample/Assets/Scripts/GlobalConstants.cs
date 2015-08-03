@@ -35,4 +35,6 @@ public sealed class GlobalConstants {
     public const int ActorBlueprintVariableCount = 12;
 
     public const int GlobalVariablesCount = 20; // 5 float, 5 bool, 5 vector
+
+    public const int MethodConstantCount = 3;
 }

@@ -12,38 +12,74 @@ public class AddActor : Method {
     {
         // First input is actor blueprint
         // Second input is vector for location
+        // Third input is the other actor 
         base.Do(ref fromActor);
 
-        int BlueprintToSpawn;
-        List<int> Blueprint;
-        Vector2 Loc;
+        int BlueprintToSpawn = -1;
+        Vector2 Loc = new Vector2();
 
+
+        // Get which actor should be spawned
         switch (base.InputLocations[0])
         {
             case MethodVariableLocation.Constants:
-                if (base.InputLocationNumbers[0] < base.Constants.Count)
+                if (InputLocationNumbers[0] < Constants.Count)
                 {
-                    BlueprintToSpawn = (int) base.Constants[base.InputLocationNumbers[0]];
+                    BlueprintToSpawn = (int) Constants[InputLocationNumbers[0]];
                 }
                 break;
             case MethodVariableLocation.CallingActor:
-                if(base.InputLocationNumbers[0] < base.CallingActor.FVariables.Count)
+                if(InputLocationNumbers[0] < CallingActor.FVariables.Count)
                 {
-                    BlueprintToSpawn = (int)base.CallingActor.FVariables[base.InputLocationNumbers[0]];
+                    BlueprintToSpawn = (int)CallingActor.FVariables[InputLocationNumbers[0]];
                 }
                 break;
             case MethodVariableLocation.Global:
-                if (base.InputLocationNumbers[0] < GMgr.FVariables.Count)
+                if (InputLocationNumbers[0] < GMgr.FVariables.Count)
                 {
-                    BlueprintToSpawn = (int)GMgr.FVariables[base.InputLocationNumbers[0]];
+                    BlueprintToSpawn = (int)GMgr.FVariables[InputLocationNumbers[0]];
                 }
                 break;
-            case MethodVariableLocation.OtherActor:
-
-                break;
             default:
+                base.TimesInvalidInputLocationChosen++;
+                return;
                 break;
         }
+
+        switch (InputLocations[1])
+        {
+            case MethodVariableLocation.Constants:
+                if(Constants.Count > 0)
+                {
+                    // Get location from 3 float variables in method constants. Cycle through, so inputlocations[1] decides first, the
+                      //  next is at inputlocations[1] + 1   and then we use modulus, in case we go out of bounds
+                    Loc = new Vector2(Constants[InputLocationNumbers[1] % GlobalConstants.MethodConstantCount],
+                                        Constants[(InputLocationNumbers[1]+1) % GlobalConstants.MethodConstantCount]);
+                }
+                break;
+
+            case MethodVariableLocation.CallingActor:
+                if(InputLocationNumbers[1] < CallingActor.VVariables.Count)
+                {
+                    Loc = CallingActor.VVariables[InputLocationNumbers[1]];
+                }
+                break;
+
+            case MethodVariableLocation.Global:
+                if(InputLocationNumbers[1] < GMgr.VVariables.Count)
+                {
+                    Loc = GMgr.VVariables[InputLocationNumbers[1]];
+                }
+                break;
+
+            default:
+                base.TimesInvalidInputLocationChosen++;
+                return;
+                break;
+
+        }
+
+        GMgr.AddActor(BlueprintToSpawn, Loc);
     }
 
 }

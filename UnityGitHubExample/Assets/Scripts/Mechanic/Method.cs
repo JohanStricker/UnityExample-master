@@ -12,6 +12,9 @@ public struct MethodVariableLocation
 
 public class Method
 {
+    public int TimesOtherNonExistantActorReferenced = 0;
+    public int TimesInvalidInputLocationChosen = 0;
+
     public List<int> InputLocations;
     public List<int> InputLocationNumbers;
 
