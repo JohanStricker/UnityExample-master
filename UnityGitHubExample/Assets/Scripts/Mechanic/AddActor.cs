@@ -8,11 +8,11 @@ public class AddActor : Method {
     {
     }
 
-    public override void Do(ref Actor fromActor) : base(ref fromActor)
+    public override void Do(ref Actor fromActor)
     {
         // First input is actor blueprint
         // Second input is vector for location
-
+        base.Do(ref fromActor);
 
         int BlueprintToSpawn;
         List<int> Blueprint;
@@ -26,12 +26,20 @@ public class AddActor : Method {
                     BlueprintToSpawn = (int) base.Constants[base.InputLocationNumbers[0]];
                 }
                 break;
-            case MethodVariableLocation.CallingActor)
-                //if(base.InputLocationNumbers[0] < base.CallingActor)
+            case MethodVariableLocation.CallingActor:
+                if(base.InputLocationNumbers[0] < base.CallingActor.FVariables.Count)
+                {
+                    BlueprintToSpawn = (int)base.CallingActor.FVariables[base.InputLocationNumbers[0]];
+                }
                 break;
             case MethodVariableLocation.Global:
+                if (base.InputLocationNumbers[0] < GMgr.FVariables.Count)
+                {
+                    BlueprintToSpawn = (int)GMgr.FVariables[base.InputLocationNumbers[0]];
+                }
                 break;
             case MethodVariableLocation.OtherActor:
+
                 break;
             default:
                 break;

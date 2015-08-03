@@ -35,6 +35,10 @@ public struct ActorEvent
 }
 
 public class Actor : MonoBehaviour{
+    public List<float> FVariables;
+    public List<bool> BVariables;
+    public List<Vector2> VVariables;
+
     public int ID;
     List<Action> Methods;
 
