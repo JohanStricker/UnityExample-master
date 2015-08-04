@@ -65,6 +65,8 @@ public class GameManager : MonoBehaviour {
 
     public void RemoveActor(int whichActor)
     {
+        //event
+        toRemove.OnDestroy();
         // Removes an actor
         if (whichActor < 0 || whichActor >= Actors.Count)
         {
@@ -91,12 +93,6 @@ public class GameManager : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-	    if(Input.GetKeyDown(KeyCode.W))
-        {
-            foreach (Actor a in Actors)
-            {
-                a.OnW();
-            }
-        }
+	    
 	}
 }

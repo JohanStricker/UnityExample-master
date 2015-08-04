@@ -267,4 +267,12 @@ public class Actor : MonoBehaviour{
             Methods[ActorEvent.ComparisonNEQ]();
         }
     }
+    public void OnDestroy()
+    {
+        Debug.Log("Actor/DoW: Event fired");
+        if (Methods.Count > ActorEvent.KeyW && Methods[ActorEvent.KeyW] != null)
+        {
+            Methods[ActorEvent.KeyW]();
+        }
+    }
 }
