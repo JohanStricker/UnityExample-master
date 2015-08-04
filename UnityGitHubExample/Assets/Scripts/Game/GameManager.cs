@@ -17,6 +17,7 @@ public class GameManager : MonoBehaviour {
     public List<GameObject> ActorGameobjs = new List<GameObject>();
     public int NumActors = 0;
     public int NumNonExistantActorsAdded = 0;
+    public int NumNonExistantActorsRemoved = 0;
     public int NumActorsAddedOnStatic = 0;
     public int NumActorsAddedOutsideMap = 0;
 
@@ -62,18 +63,20 @@ public class GameManager : MonoBehaviour {
         Debug.Log("GameManager/AddActor: Actor added");
     }
 
-    public void RemoveActor(ref Actor toRemove)
+    public void RemoveActor(int whichActor)
     {
         // Removes an actor
-        for (int i = 0; i < Actors.Count; i++)
+        if (whichActor < 0 || whichActor >= Actors.Count)
         {
-            if (Actors[i].Equals(toRemove))
-            {
-                Destroy(ActorGameobjs[i]);
-                Actors.RemoveAt(i);
-                ActorGameobjs.RemoveAt(i);
-            }
+            NumNonExistantActorsRemoved++;
+            return;
         }
+
+        Actors[whichActor].OnDestroy();
+
+        Destroy(ActorGameobjs[whichActor]);
+        Actors.RemoveAt(whichActor);
+        ActorGameobjs.RemoveAt(whichActor);
     }
     
     

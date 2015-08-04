@@ -78,7 +78,7 @@ public class AddActor : Method {
                 break;
 
         }
-
+        
         GMgr.AddActor(BlueprintToSpawn, Loc);
     }
 
