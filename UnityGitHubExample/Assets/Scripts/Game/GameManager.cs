@@ -65,8 +65,6 @@ public class GameManager : MonoBehaviour {
 
     public void RemoveActor(int whichActor)
     {
-        //event
-        toRemove.OnDestroy();
         // Removes an actor
         if (whichActor < 0 || whichActor >= Actors.Count)
         {
