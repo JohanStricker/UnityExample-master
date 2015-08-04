@@ -195,7 +195,7 @@ public class Actor : MonoBehaviour{
             Methods[ActorEvent.MouseRight]();
         }
     }
-
+    // this need work
     public void OnTimer()
     {
         Debug.Log("Actor/TimerTicked: Event fired");
