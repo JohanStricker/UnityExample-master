@@ -82,7 +82,7 @@ public sealed class GameGen  {
         }
 
         // Adding methods
-
+        
         Debug.Log("GameGen/GenerateGame: Actors added to GameManager");
     }
 }
