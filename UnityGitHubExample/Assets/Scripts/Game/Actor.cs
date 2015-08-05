@@ -35,22 +35,41 @@ public struct ActorEvent
 }
 
 public class Actor : MonoBehaviour{
-    public List<float> FVariables;
-    public List<bool> BVariables;
-    public List<Vector2> VVariables;
+                                            // |read-only  | 
+    public List<float> FVariables;          // | ID         | TimerTime      a b c
+    public List<bool> BVariables;           // | IsActive   | TimerRunning   d e f
+    public List<Vector2> VVariables;        // | Loc        | CollidesWith   g h i
 
     public int ID;
     List<Action> Methods;
     public Timer Timer;
 
-    
-
-    public void Setup(List<int> Blueprints)
+    public void Setup(List<int> Blueprints, int ID, Vector2 Loc)
     {
+        // Add read-only float
+        FVariables = new List<float>();
+        FVariables.Add((float)ID);
+
+
+        // Add read-only bool
+        BVariables = new List<bool>();
+        BVariables.Add(true);
+
+        // Add read-only vector
+        VVariables = new List<Vector2>();
+        VVariables.Add(Loc);
+
         Methods = new List<Action>();
-        foreach (int method in Blueprints)
+
+        // Split blueprint into methods and variables
+        List<int> ActorMethods = Blueprints.GetRange(0, GlobalConstants.ActorBlueprintEventCount);
+        List<int> ActorVariables = Blueprints.GetRange(GlobalConstants.ActorBlueprintEventCount, Blueprints.Count - GlobalConstants.ActorBlueprintEventCount);
+
+
+        // Attach methods to events
+        foreach (int _event in ActorMethods)
         {
-            switch (method)
+            switch (_event)
             {
                 case ActorEvent.Nothing:
                     // Nothing on event 0
@@ -129,12 +148,34 @@ public class Actor : MonoBehaviour{
                     break;
             }
         }
+
         //timer
         if (BVariables[1]) {
             Timer = new Timer(FVariables[1]);
             Timer.Start();
+
+
+        // Add variables
+        for (int i = 0; i < 4; i++)
+        {
+            // If they are "equal" to 0 treat as false, else treat as true
+            BVariables.Add(Mathf.Abs(ActorVariables[i]) < GlobalConstants.FloatComparisonDifference ? false : true);
+        }
+
+        for (int i = 4; i < 8; i++)
+        {
+            // Add floats
+            FVariables.Add(ActorVariables[i]);
+        }
+
+        for (int i = 8; i < 16; i++)
+        {
+            // Add vectors (from floats)
+            VVariables.Add(new Vector2(ActorVariables[i], ActorVariables[++i]));
+
         }
     }
+    
 
     private void DoLog()
     {

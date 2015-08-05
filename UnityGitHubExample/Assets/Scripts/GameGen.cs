@@ -34,7 +34,7 @@ public sealed class GameGen  {
         // Add Actors
         foreach (List<int> blueprint in g.ActorBlueprints)
         {
-            GMgr.ActorBlueprints.Add(blueprint);
+            GMgr.ActorBlueprints.Add(blueprint);    // Contains both methods and variables
         }
         Debug.Log("GameGen/GenerateGame: Blueprints added to GameManager");
 
