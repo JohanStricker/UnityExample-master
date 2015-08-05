@@ -59,6 +59,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\Scripts\Events\CollisionCheck.cs" />
     <Compile Include="Assets\Scripts\Events\Input\KeyboardInput.cs" />
     <Compile Include="Assets\Scripts\Events\Input\MouseInput.cs" />
     <Compile Include="Assets\Scripts\Events\TimerTick.cs" />

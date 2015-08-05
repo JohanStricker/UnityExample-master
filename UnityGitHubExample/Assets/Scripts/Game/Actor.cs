@@ -73,13 +73,6 @@ public class Actor : MonoBehaviour{
             Methods.Add(GMgr.GetMethod(method, this));
         }
 
-        //timer
-        if (BVariables[1])
-        {
-            Timer = new Timer(FVariables[1]);
-            Timer.Start();
-        }
-
         // Add variables
         for (int i = 0; i < 4; i++)
         {
@@ -98,6 +91,12 @@ public class Actor : MonoBehaviour{
             // Add vectors (from floats)
             VVariables.Add(new Vector2(ActorVariables[i], ActorVariables[++i]));
 
+        }
+        //timer
+        if (BVariables[1])
+        {
+            Timer = new Timer(FVariables[1]);
+            Timer.Start();
         }
     }
     

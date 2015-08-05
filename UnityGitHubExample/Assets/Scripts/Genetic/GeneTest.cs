@@ -11,6 +11,7 @@ public class GeneTest : MonoBehaviour {
         g.ActorBlueprints = new List<List<int>>();
         g.ActorBlueprints.Add(new List<int>());
         g.ActorBlueprints.Add(new List<int>());
+        g.GlobalVariables = new List<int>();
         g.ActorCounts = new List<int>();
         g.Locations = new List<int>();
 
@@ -47,19 +48,50 @@ public class GeneTest : MonoBehaviour {
         //vectors
         g.ActorBlueprints[0].Add(0);
         g.ActorBlueprints[0].Add(0);
+
         g.ActorBlueprints[0].Add(0);
         g.ActorBlueprints[0].Add(0);
+
         g.ActorBlueprints[0].Add(0);
         g.ActorBlueprints[0].Add(0);
+
         g.ActorBlueprints[0].Add(0);
         g.ActorBlueprints[0].Add(0);
+
+        //global variables
+        //bool
+        g.GlobalVariables.Add(0);
+        g.GlobalVariables.Add(0);
+        g.GlobalVariables.Add(0);
+        g.GlobalVariables.Add(0);
+        g.GlobalVariables.Add(0);
+        //float
+        g.GlobalVariables.Add(0);
+        g.GlobalVariables.Add(0);
+        g.GlobalVariables.Add(0);
+        g.GlobalVariables.Add(0);
+        g.GlobalVariables.Add(0);
+        //vector2d
+        g.GlobalVariables.Add(0);
+        g.GlobalVariables.Add(0);
+        g.GlobalVariables.Add(0);
+        g.GlobalVariables.Add(0);
+        g.GlobalVariables.Add(0);
+        g.GlobalVariables.Add(0);
+        g.GlobalVariables.Add(0);
+        g.GlobalVariables.Add(0);
+        g.GlobalVariables.Add(0);
+        g.GlobalVariables.Add(0);
         //end of first actor
 
+
+
+        //actor count
         g.ActorCounts.Add(0);   // first actor
         g.ActorCounts.Add(4);   // Add 4
 
 
-
+        //locations x,y x,y x,y
         g.Locations.Add(10);
         g.Locations.Add(20);
         g.Locations.Add(0);

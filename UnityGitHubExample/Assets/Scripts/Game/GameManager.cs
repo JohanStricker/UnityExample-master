@@ -55,9 +55,10 @@ public class GameManager : MonoBehaviour {
             NumActorsAddedOnStatic++;
             return;
         }
-            
+
         // Instantiate and add gameobject
-        ActorGameobjs.Add(Instantiate(ActorPrefab, new Vector3(pos.x + (mapGen.scaleFactor/2), pos.y + (mapGen.scaleFactor / 2), 0), Quaternion.identity) as GameObject);
+        //ActorGameobjs.Add(Instantiate(ActorPrefab, new Vector3(pos.x + (mapGen.scaleFactor/2), pos.y + (mapGen.scaleFactor / 2), 0), Quaternion.identity) as GameObject);
+        ActorGameobjs.Add(Instantiate(ActorPrefab, new Vector3(pos.x, pos.y, 0), Quaternion.identity) as GameObject);
         Actors.Add(ActorGameobjs.Last().GetComponent<Actor>());
         Actors.Last().Setup(ActorBlueprints[whichActor], NumActors, pos, this);
         Actors.Last().ID = NumActors;
