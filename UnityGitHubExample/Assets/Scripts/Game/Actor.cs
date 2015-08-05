@@ -79,7 +79,7 @@ public class Actor : MonoBehaviour{
                 //Keys
                 case ActorEvent.KeyW:
                     // Debug on event 1
-                    Methods.Add(DoLog);  
+                    Methods.Add(DoLog);
                     break;
                 case ActorEvent.KeyA:
                     // Debug on event 2
@@ -150,10 +150,11 @@ public class Actor : MonoBehaviour{
         }
 
         //timer
-        if (BVariables[1]) {
+        if (BVariables[1])
+        {
             Timer = new Timer(FVariables[1]);
             Timer.Start();
-
+        }
 
         // Add variables
         for (int i = 0; i < 4; i++)
