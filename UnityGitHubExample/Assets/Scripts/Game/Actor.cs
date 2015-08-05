@@ -41,6 +41,7 @@ public class Actor : MonoBehaviour{
     public List<Vector2> VVariables;        // | Loc        | CollidesWith   g h i
 
     public int ID;
+    public int Type;
     List<Action> Methods;
     public Timer Timer;
 

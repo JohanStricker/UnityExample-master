@@ -67,7 +67,7 @@ public class Genome {
         a = Random.Range(0, GlobalConstants.ActorCountMax);
         b = Random.Range(0, GlobalConstants.MethodCountMax);
         EndEvents.Add(a);
-        EndEvents.Add(b);
+        EndEvents.Add(9);       // Only collision (9) as end event now
 
         // Actor methods
         a = Random.Range(GlobalConstants.ActorCountMin, GlobalConstants.ActorCountMax);
