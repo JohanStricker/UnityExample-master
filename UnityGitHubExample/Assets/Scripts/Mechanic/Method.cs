@@ -10,6 +10,16 @@ public struct MethodVariableLocation
     public const int OtherActor = 3;
 };
 
+public struct MethodType
+{
+    public const int Null = 0;
+    public const int EndGame = 1;
+    public const int AddActor = 2;
+    public const int RemoveActor = 3;
+    public const int Movement = 4;
+    public const int ChangeVariable = 5;
+};
+
 public class Method
 {
     public int TimesNonExistantActorReferenced = 0;
@@ -20,6 +30,7 @@ public class Method
 
     public int OutputLocation;
     public int OutputLocationNumber;
+    public int OtherID;
 
     public List<float> Constants;
 

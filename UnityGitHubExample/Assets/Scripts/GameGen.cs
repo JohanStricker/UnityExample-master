@@ -50,13 +50,14 @@ public sealed class GameGen  {
         {
             GMgr.VVariables.Add(new Vector2(g.GlobalVariables[i], g.GlobalVariables[++i]));
         }
+        Debug.Log("GameGen/GenerateGame: Global variables added");
 
         // Add Actors
         foreach (List<int> blueprint in g.ActorBlueprints)
         {
             GMgr.ActorBlueprints.Add(blueprint);    // Contains both methods and variables
         }
-        Debug.Log("GameGen/GenerateGame: Blueprints added to GameManager");
+        Debug.Log("GameGen/GenerateGame: Actor blueprints added to GameManager");
 
 
         // Make ActorCounts of each (as long as we have more locations to add to)
@@ -80,9 +81,15 @@ public sealed class GameGen  {
                 }
             }
         }
+        Debug.Log("GameGen/GenerateGame: Actors added");
 
         // Adding methods
-        
-        Debug.Log("GameGen/GenerateGame: Actors added to GameManager");
+        foreach (List<int> method in g.MethodBlueprints)
+        {
+            GMgr.AddMethod(method);
+        }
+        Debug.Log("GameGen/GenerateGame: Methods added");
+
+        Debug.Log("GameGen/GenerateGame: Game Generated");
     }
 }

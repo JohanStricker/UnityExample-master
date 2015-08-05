@@ -21,7 +21,7 @@ public class GameManager : MonoBehaviour {
     public int NumNonExistantActorsRemoved = 0;
     public int NumActorsAddedOnStatic = 0;
     public int NumActorsAddedOutsideMap = 0;
-
+    
     public List<Method> Methods = new List<Method>();
 
     public MapGeneration mapGen;
@@ -48,7 +48,7 @@ public class GameManager : MonoBehaviour {
         }
 
         // Count and return if tried to add on static map part
-        if (mapGen.placedWalls[mapGen.placedWalls.GetLength(0) - (int) pos.y,(int) pos.x] != null)
+        if (mapGen.IsWallAt(pos.x, pos.y))
         {
             Debug.Log("GameManager/AddActor: Actor placed on wall");
             NumActorsAddedOnStatic++;
@@ -82,20 +82,65 @@ public class GameManager : MonoBehaviour {
         Actors.RemoveAt(whichActor);
         ActorGameobjs.RemoveAt(whichActor);
     }
+
+    public void MoveActor(int whichActor, Vector2 dir)
+    {
+        if (whichActor < 0 || whichActor > Actors.Count)
+            return;
+
+        Vector2 newPos = Actors[whichActor].VVariables[0] + dir;
+
+        if (mapGen.IsWallAt((int)newPos.x, (int)newPos.y))
+            return;
+
+        ActorGameobjs[whichActor].transform.position = newPos;
+
+        CollisionCheck();
+    }
     
     public void AddMethod(List<int> methodBlueprint)
     {
+        switch (methodBlueprint[0])
+        {
+            case MethodType.Null:
+                Methods.Add(null);
+                break;
+            case MethodType.EndGame:
+                Methods.Add(new EndGame());
+                break;
+            case MethodType.AddActor:
+                Methods.Add(new AddActor());
+                break;
+            case MethodType.RemoveActor:
+                Methods.Add(new RemoveActor());
+                break;
+            case MethodType.Movement:
+                Methods.Add(new Movement());
+                break;
+            case MethodType.ChangeVariable:
+                break;
+            default:
+                break;
+        }
 
+        Methods.Last().InputLocations = methodBlueprint.GetRange(1, 3);
+        Methods.Last().OutputLocation = methodBlueprint[4];
+        Methods.Last().OtherID = methodBlueprint[5];
+        Methods.Last().InputLocationNumbers = methodBlueprint.GetRange(6, 3);
+        Methods.Last().OutputLocationNumber = methodBlueprint[9];
+        Methods.Last().Constants =  methodBlueprint.GetRange(10, 3).Select(i => (float)i).ToList();
     }
 
     public Action<Actor> GetMethod(int whichMethod, Actor fromActor)
     {
-        if (whichMethod < 0 || whichMethod >= Methods.Count)
-        {
+        // Get the correct method. 0 means no method, means null.
+        if (whichMethod < 1 || whichMethod >= Methods.Count+1)
             return null;
-        }
 
-        return Methods[whichMethod].Do;
+        if (Methods[whichMethod - 1] == null)
+            return null;
+
+        return Methods[whichMethod-1].Do;
     }
 
     public void EndGame()

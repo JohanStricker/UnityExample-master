@@ -40,6 +40,11 @@ public class Actor : MonoBehaviour{
     public List<bool> BVariables;           // | IsActive   | TimerRunning   d e f
     public List<Vector2> VVariables;        // | Loc        | CollidesWith   g h i
 
+
+    public Vector2 UserMoveDir;
+
+    public bool HasInput;
+
     public int ID;
     public int Type;
     List<Action<Actor>> Methods;
@@ -68,9 +73,24 @@ public class Actor : MonoBehaviour{
 
 
         // Attach methods to events
-        foreach (int method in ActorMethods)
+        HasInput = false;
+        for (int i = 0; i < ActorMethods.Count; i++)
         {
-            Methods.Add(GMgr.GetMethod(method, this));
+            switch (ActorMethods[i])
+            {
+                case ActorEvent.KeyA:
+                case ActorEvent.KeyD:
+                case ActorEvent.KeyS:
+                case ActorEvent.KeyW:
+                case ActorEvent.KeySpace:
+                case ActorEvent.MouseLeft:
+                case ActorEvent.MouseRight:
+                    HasInput = true;
+                    break;
+                default:
+                    break;
+            }
+            Methods.Add(GMgr.GetMethod(ActorMethods[i], this));
         }
 
         // Add variables
@@ -107,6 +127,9 @@ public class Actor : MonoBehaviour{
         if (Methods.Count > ActorEvent.KeyW && Methods[ActorEvent.KeyW] != null)
         {
             Methods[ActorEvent.KeyW](this);
+
+            // Common sense movement
+            UserMoveDir = Vector2.up;
         }
     }
 
@@ -116,6 +139,9 @@ public class Actor : MonoBehaviour{
         if (Methods.Count > ActorEvent.KeyA && Methods[ActorEvent.KeyA] != null)
         {
             Methods[ActorEvent.KeyA](this);
+
+            // Common sense movement
+            UserMoveDir = Vector2.right * -1;
         }
     }
 
@@ -125,6 +151,9 @@ public class Actor : MonoBehaviour{
         if (Methods.Count > ActorEvent.KeyS && Methods[ActorEvent.KeyS] != null)
         {
             Methods[ActorEvent.KeyS](this);
+
+            // Common sense movement
+            UserMoveDir = Vector2.up * -1;
         }
     }
 
@@ -134,6 +163,9 @@ public class Actor : MonoBehaviour{
         if (Methods.Count > ActorEvent.KeyD && Methods[ActorEvent.KeyD] != null)
         {
             Methods[ActorEvent.KeyD](this);
+
+            // Common sense movement
+            UserMoveDir = Vector2.right;
         }
     }
 

@@ -86,6 +86,14 @@ public class MapGeneration : MonoBehaviour {
         }
     } 
 
+    public bool IsWallAt(int x, int y)
+    {
+        if (placedWalls[placedWalls.GetLength(0) - y, x] == null)
+            return false;
+
+        return true;
+    }
+
 	// Use this for initialization
 	void Start () {
 	
