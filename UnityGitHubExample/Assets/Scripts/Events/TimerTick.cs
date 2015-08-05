@@ -14,7 +14,7 @@ public class TimerTick : MonoBehaviour {
 	void Update () {
 
         foreach (Actor A in GMgr.Actors) {
-            if(A.BVariables[1])
+            if(A.BVariables[1] && A.FVariables[1]>=0.1)
                 if (A.Timer.isfinished())
                 {
                     A.OnTimer();
