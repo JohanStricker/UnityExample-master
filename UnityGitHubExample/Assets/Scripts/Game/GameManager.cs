@@ -58,6 +58,7 @@ public class GameManager : MonoBehaviour {
         Actors.Add(ActorGameobjs.Last().GetComponent<Actor>());
         Actors.Last().Setup(ActorBlueprints[whichActor], NumActors, pos);
         Actors.Last().ID = NumActors;
+        Actors.Last().Type = whichActor;
         NumActors++;
         // Tie events to methods/mechanics
         Debug.Log("GameManager/AddActor: Actor added");
