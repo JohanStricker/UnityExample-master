@@ -39,9 +39,8 @@ public class GameManager : MonoBehaviour {
             return;
         }
 
-
-        Debug.Log(mapGen);
-        if (pos.x < 0 || pos.x >= mapGen.placedWalls.GetLength(0) || pos.y < 0 || pos.y >= mapGen.placedWalls.GetLength(1))
+        
+        if (pos.x < 0 || pos.x >= mapGen.placedWalls.GetLength(1) || pos.y < 0 || pos.y >= mapGen.placedWalls.GetLength(0))
         {
             Debug.Log("GameManager/AddActor: Actor placed outside map");
             NumActorsAddedOutsideMap++;
@@ -49,7 +48,7 @@ public class GameManager : MonoBehaviour {
         }
 
         // Count and return if tried to add on static map part
-        if (mapGen.placedWalls[(int) pos.x, mapGen.placedWalls.GetLength(1)-(int) pos.y] != null)
+        if (mapGen.placedWalls[mapGen.placedWalls.GetLength(0) - (int) pos.y,(int) pos.x] != null)
         {
             Debug.Log("GameManager/AddActor: Actor placed on wall");
             NumActorsAddedOnStatic++;
@@ -84,6 +83,11 @@ public class GameManager : MonoBehaviour {
         ActorGameobjs.RemoveAt(whichActor);
     }
     
+    public void AddMethod(List<int> methodBlueprint)
+    {
+
+    }
+
     public Action<Actor> GetMethod(int whichMethod, Actor fromActor)
     {
         if (whichMethod < 0 || whichMethod >= Methods.Count)
