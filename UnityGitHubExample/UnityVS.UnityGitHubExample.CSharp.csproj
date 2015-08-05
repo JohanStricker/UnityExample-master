@@ -61,7 +61,6 @@
   <ItemGroup>
     <Compile Include="Assets\Scripts\Events\Input\KeyboardInput.cs" />
     <Compile Include="Assets\Scripts\Events\Input\MouseInput.cs" />
-    <Compile Include="Assets\Scripts\Events\Timers\Timer.cs" />
     <Compile Include="Assets\Scripts\Game\Actor.cs" />
     <Compile Include="Assets\Scripts\Game\GameManager.cs" />
     <Compile Include="Assets\Scripts\Game\MapGeneration.cs" />
@@ -73,6 +72,7 @@
     <Compile Include="Assets\Scripts\Mechanic\Method.cs" />
     <Compile Include="Assets\Scripts\Mechanic\Movement.cs" />
     <Compile Include="Assets\Scripts\Mechanic\RemoveActor.cs" />
+    <Compile Include="Assets\Scripts\Timer.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\Miscellaneous\The Map in txt.txt" />
