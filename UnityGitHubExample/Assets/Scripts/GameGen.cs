@@ -32,16 +32,20 @@ public sealed class GameGen  {
         // Generate game from genome
 
         // Add global variables
+        
+        GMgr.BVariables = new List<bool>();
         for (int i = 0; i < 5; i++)
         {
             GMgr.BVariables.Add(Mathf.Abs(g.GlobalVariables[i]) > GlobalConstants.FloatComparisonDifference ? true : false );
         }
 
+        GMgr.FVariables = new List<float>();
         for (int i = 5; i < 10; i++)
         {
             GMgr.FVariables.Add(g.GlobalVariables[i]);
         }
 
+        GMgr.VVariables = new List<Vector2>();
         for (int i = 10; i < 20; i++)
         {
             GMgr.VVariables.Add(new Vector2(g.GlobalVariables[i], g.GlobalVariables[++i]));
