@@ -59,9 +59,9 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Assets\Scripts\Events\KeyboardInput.cs" />
-    <Compile Include="Assets\Scripts\Events\MouseInput.cs" />
-    <Compile Include="Assets\Scripts\Events\Timer.cs" />
+    <Compile Include="Assets\Scripts\Events\Input\KeyboardInput.cs" />
+    <Compile Include="Assets\Scripts\Events\Input\MouseInput.cs" />
+    <Compile Include="Assets\Scripts\Events\Timers\Timer.cs" />
     <Compile Include="Assets\Scripts\Game\Actor.cs" />
     <Compile Include="Assets\Scripts\Game\GameManager.cs" />
     <Compile Include="Assets\Scripts\Game\MapGeneration.cs" />
