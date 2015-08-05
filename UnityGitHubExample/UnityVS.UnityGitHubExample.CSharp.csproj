@@ -61,6 +61,7 @@
   <ItemGroup>
     <Compile Include="Assets\Scripts\Events\Input\KeyboardInput.cs" />
     <Compile Include="Assets\Scripts\Events\Input\MouseInput.cs" />
+    <Compile Include="Assets\Scripts\Events\TimerTick.cs" />
     <Compile Include="Assets\Scripts\Game\Actor.cs" />
     <Compile Include="Assets\Scripts\Game\GameManager.cs" />
     <Compile Include="Assets\Scripts\Game\MapGeneration.cs" />

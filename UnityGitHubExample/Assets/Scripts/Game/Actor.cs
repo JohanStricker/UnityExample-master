@@ -43,7 +43,9 @@ public class Actor : MonoBehaviour{
     List<Action> Methods;
     public Timer Timer;
 
-    public void Setup(List<int> Blueprints, float TimerDuration)
+    
+
+    public void Setup(List<int> Blueprints)
     {
         Methods = new List<Action>();
         foreach (int method in Blueprints)
@@ -127,8 +129,11 @@ public class Actor : MonoBehaviour{
                     break;
             }
         }
-        Timer = new Timer(TimerDuration);
-        Timer.Start();
+        //timer
+        if (BVariables[1]) {
+            Timer = new Timer(FVariables[1]);
+            Timer.Start();
+        }
     }
 
     private void DoLog()
@@ -204,6 +209,7 @@ public class Actor : MonoBehaviour{
         Debug.Log("Actor/TimerTicked: Event fired");
         if (Methods.Count > ActorEvent.TimerTick && Methods[ActorEvent.TimerTick] != null)
         {
+            Debug.Log("suck my balls");
             Methods[ActorEvent.TimerTick]();
         }
     }

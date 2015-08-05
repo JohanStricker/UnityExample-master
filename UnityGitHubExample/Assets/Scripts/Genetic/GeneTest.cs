@@ -14,20 +14,51 @@ public class GeneTest : MonoBehaviour {
         g.ActorCounts = new List<int>();
         g.Locations = new List<int>();
 
-        g.ActorBlueprints[0].Add(1);        // Events
-        g.ActorBlueprints[0].Add(1);
-        g.ActorBlueprints[0].Add(3);
-                                            // Variables 3 bool, 3 float, 3 vector = 12 variables in total
+        //actor
+        g.ActorBlueprints[0].Add(0);
+        g.ActorBlueprints[0].Add(0);
+        g.ActorBlueprints[0].Add(0);
+        g.ActorBlueprints[0].Add(0);
+        g.ActorBlueprints[0].Add(0);
+        g.ActorBlueprints[0].Add(0);
+        g.ActorBlueprints[0].Add(0);
+        g.ActorBlueprints[0].Add(0);
+        g.ActorBlueprints[0].Add(0);
+        g.ActorBlueprints[0].Add(0);
+        g.ActorBlueprints[0].Add(0);
+        g.ActorBlueprints[0].Add(0);
+        g.ActorBlueprints[0].Add(0);
+        g.ActorBlueprints[0].Add(0);
+        g.ActorBlueprints[0].Add(0);
+        g.ActorBlueprints[0].Add(0);
+        //variables
+        
+        //bool
+        g.ActorBlueprints[0].Add(0);
+        g.ActorBlueprints[0].Add(0);
+        g.ActorBlueprints[0].Add(0);
+        g.ActorBlueprints[0].Add(0);
+        //floats
+        g.ActorBlueprints[0].Add(0);
+        g.ActorBlueprints[0].Add(0);
+        g.ActorBlueprints[0].Add(0);
+        g.ActorBlueprints[0].Add(0);
 
-        g.ActorBlueprints[1].Add(0);
-        g.ActorBlueprints[1].Add(5);
-        g.ActorBlueprints[1].Add(6);
+        //vectors
+        g.ActorBlueprints[0].Add(0);
+        g.ActorBlueprints[0].Add(0);
+        g.ActorBlueprints[0].Add(0);
+        g.ActorBlueprints[0].Add(0);
+        g.ActorBlueprints[0].Add(0);
+        g.ActorBlueprints[0].Add(0);
+        g.ActorBlueprints[0].Add(0);
+        g.ActorBlueprints[0].Add(0);
+        //end of first actor
 
         g.ActorCounts.Add(0);   // first actor
         g.ActorCounts.Add(4);   // Add 4
 
-        g.ActorCounts.Add(1);   // second actor
-        g.ActorCounts.Add(10);   // add 3
+
 
         g.Locations.Add(10);
         g.Locations.Add(20);
