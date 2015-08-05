@@ -39,8 +39,6 @@ public class GameManager : MonoBehaviour {
             return;
         }
 
-
-        Debug.Log(mapGen);
         if (pos.x < 0 || pos.x >= mapGen.placedWalls.GetLength(1) || pos.y < 0 || pos.y >= mapGen.placedWalls.GetLength(0))
         {
             Debug.Log("GameManager/AddActor: Actor placed outside map");
@@ -49,7 +47,7 @@ public class GameManager : MonoBehaviour {
         }
 
         // Count and return if tried to add on static map part
-        if (mapGen.placedWalls[(int) pos.x, mapGen.placedWalls.GetLength(1)-(int) pos.y] != null)
+        if (mapGen.placedWalls[mapGen.placedWalls.GetLength(0) - (int) pos.y-1,(int) pos.x] != null)
         {
             Debug.Log("GameManager/AddActor: Actor placed on wall");
             NumActorsAddedOnStatic++;
@@ -84,6 +82,11 @@ public class GameManager : MonoBehaviour {
         ActorGameobjs.RemoveAt(whichActor);
     }
     
+    public void AddMethod(List<int> methodBlueprint)
+    {
+
+    }
+
     public Action<Actor> GetMethod(int whichMethod, Actor fromActor)
     {
         if (whichMethod < 0 || whichMethod >= Methods.Count)
@@ -98,6 +101,32 @@ public class GameManager : MonoBehaviour {
     {
         Debug.Log("Game Ended");
         Time.timeScale = 0.0f;
+    }
+
+    public void CollisionCheck() {
+        for (int i = 0; i<Actors.Count()-1;i++)
+        {
+            for (int j = 0; j < Actors.Count() - 1; j++)
+            {
+                //self id check
+                if (Actors[i].ID == Actors[j].ID)
+                    continue;
+
+                //possition check
+                if (Actors[i].VVariables[0] == Actors[j].VVariables[0])
+                {
+                    //actor type check
+                    if (Actors[i].VVariables[1].x == Actors[j].Type || Actors[i].VVariables[1].y == Actors[j].Type)
+                    {
+                        //then Actors[i].OnCollision(with actor[j]);
+                        Actors[i].OnCollision();
+                    }
+                }
+                
+            }
+        }
+
+
     }
     
     void Awake() {
