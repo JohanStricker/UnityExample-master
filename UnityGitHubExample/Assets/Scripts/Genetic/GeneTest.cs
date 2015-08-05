@@ -88,12 +88,14 @@ public class GeneTest : MonoBehaviour {
 
         //actor count
         g.ActorCounts.Add(0);   // first actor
-        g.ActorCounts.Add(4);   // Add 4
+        g.ActorCounts.Add(100);   // Add 4
 
 
         //locations x,y x,y x,y
-        g.Locations.Add(10);
-        g.Locations.Add(20);
+
+
+        g.Locations.Add(0);
+        g.Locations.Add(0);
         g.Locations.Add(0);
         g.Locations.Add(2);
         g.Locations.Add(1);
@@ -104,16 +106,39 @@ public class GeneTest : MonoBehaviour {
         g.Locations.Add(50);
         g.Locations.Add(3);
         g.Locations.Add(8);
-        g.Locations.Add(10);
-        g.Locations.Add(12);
-        g.Locations.Add(0);
-        g.Locations.Add(4);
-        g.Locations.Add(28);
-        g.Locations.Add(4);
-        g.Locations.Add(13);
-        g.Locations.Add(43);
-        g.Locations.Add(25);
-        g.Locations.Add(25);
+
+        //randoms locations
+        g.Locations.Add(Random.Range(0, 47));
+        g.Locations.Add(Random.Range(0, 33));
+        g.Locations.Add(Random.Range(0, 47));
+        g.Locations.Add(Random.Range(0, 33));
+        g.Locations.Add(Random.Range(0, 47));
+        g.Locations.Add(Random.Range(0, 33));
+        g.Locations.Add(Random.Range(0, 47));
+        g.Locations.Add(Random.Range(0, 47));
+        g.Locations.Add(Random.Range(0, 47));
+        g.Locations.Add(Random.Range(0, 33));
+        g.Locations.Add(Random.Range(0, 47));
+        g.Locations.Add(Random.Range(0, 33));
+        g.Locations.Add(Random.Range(0, 47));
+        g.Locations.Add(Random.Range(0, 33));
+        g.Locations.Add(Random.Range(0, 47));
+        g.Locations.Add(Random.Range(0, 33));
+        g.Locations.Add(Random.Range(0, 47));
+        g.Locations.Add(Random.Range(0, 33));
+        g.Locations.Add(Random.Range(0, 47));
+        g.Locations.Add(Random.Range(0, 33));
+        g.Locations.Add(Random.Range(0, 47));
+        g.Locations.Add(Random.Range(0, 33));
+        g.Locations.Add(Random.Range(0, 47));
+        g.Locations.Add(Random.Range(0, 33));
+        g.Locations.Add(Random.Range(0, 47));
+        g.Locations.Add(Random.Range(0, 33));
+        g.Locations.Add(Random.Range(0, 47));
+        g.Locations.Add(Random.Range(0, 33));
+        g.Locations.Add(Random.Range(0, 33));
+        g.Locations.Add(Random.Range(0, 33));
+
 
 
         GameGen.Instance.GenerateGame(g);

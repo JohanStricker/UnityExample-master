@@ -39,7 +39,6 @@ public class GameManager : MonoBehaviour {
             return;
         }
 
-        
         if (pos.x < 0 || pos.x >= mapGen.placedWalls.GetLength(1) || pos.y < 0 || pos.y >= mapGen.placedWalls.GetLength(0))
         {
             Debug.Log("GameManager/AddActor: Actor placed outside map");
@@ -48,7 +47,7 @@ public class GameManager : MonoBehaviour {
         }
 
         // Count and return if tried to add on static map part
-        if (mapGen.IsWallAt(pos.x, pos.y))
+        if (mapGen.IsWallAt((int) pos.x, (int) pos.y))
         {
             Debug.Log("GameManager/AddActor: Actor placed on wall");
             NumActorsAddedOnStatic++;
@@ -147,6 +146,32 @@ public class GameManager : MonoBehaviour {
     {
         Debug.Log("Game Ended");
         Time.timeScale = 0.0f;
+    }
+
+    public void CollisionCheck() {
+        for (int i = 0; i<Actors.Count()-1;i++)
+        {
+            for (int j = 0; j < Actors.Count() - 1; j++)
+            {
+                //self id check
+                if (Actors[i].ID == Actors[j].ID)
+                    continue;
+
+                //possition check
+                if (Actors[i].VVariables[0] == Actors[j].VVariables[0])
+                {
+                    //actor type check
+                    if (Actors[i].VVariables[1].x == Actors[j].Type || Actors[i].VVariables[1].y == Actors[j].Type)
+                    {
+                        //then Actors[i].OnCollision(with actor[j]);
+                        Actors[i].OnCollision();
+                    }
+                }
+                
+            }
+        }
+
+
     }
     
     void Awake() {
