@@ -88,7 +88,7 @@ public class GeneTest : MonoBehaviour {
 
         //actor count
         g.ActorCounts.Add(0);   // first actor
-        g.ActorCounts.Add(4);   // Add 4
+        g.ActorCounts.Add(100);   // Add 4
 
 
         //locations x,y x,y x,y
