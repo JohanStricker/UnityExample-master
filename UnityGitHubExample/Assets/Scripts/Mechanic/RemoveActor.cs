@@ -7,6 +7,10 @@ public class RemoveActor : Method {
     {
         // GameManager.Instance.RemoveActor(ref a);
         int whichActor = 0;
+
+
+         // Remove Actor N given by method inputs
+
         // Get which actor should be removed
         switch (base.InputLocations[0])
         {
@@ -34,6 +38,9 @@ public class RemoveActor : Method {
                 break;
         }
 
+
+        // If output location is specified, this rules over previous (ie. calling removes the calling actor, other or global removes by id)6U4Rlbgrdutuieklhrvtuelfiunvbdrn
+        
         if(whichActor >= 0 && whichActor < GMgr.Actors.Count)
         {
             // Remove that actor
