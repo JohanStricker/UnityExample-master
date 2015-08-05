@@ -70,6 +70,7 @@
     <Compile Include="Assets\Scripts\Genetic\Genome.cs" />
     <Compile Include="Assets\Scripts\GlobalConstants.cs" />
     <Compile Include="Assets\Scripts\Mechanic\AddActor.cs" />
+    <Compile Include="Assets\Scripts\Mechanic\EndGame.cs" />
     <Compile Include="Assets\Scripts\Mechanic\Method.cs" />
     <Compile Include="Assets\Scripts\Mechanic\Movement.cs" />
     <Compile Include="Assets\Scripts\Mechanic\RemoveActor.cs" />

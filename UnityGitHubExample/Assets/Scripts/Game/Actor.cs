@@ -42,10 +42,10 @@ public class Actor : MonoBehaviour{
 
     public int ID;
     public int Type;
-    List<Action> Methods;
+    List<Action<Actor>> Methods;
     public Timer Timer;
 
-    public void Setup(List<int> Blueprints, int ID, Vector2 Loc)
+    public void Setup(List<int> Blueprints, int ID, Vector2 Loc, GameManager GMgr)
     {
         // Add read-only float
         FVariables = new List<float>();
@@ -60,7 +60,7 @@ public class Actor : MonoBehaviour{
         VVariables = new List<Vector2>();
         VVariables.Add(Loc);
 
-        Methods = new List<Action>();
+        Methods = new List<Action<Actor>>();
 
         // Split blueprint into methods and variables
         List<int> ActorMethods = Blueprints.GetRange(0, GlobalConstants.ActorBlueprintEventCount);
@@ -68,86 +68,9 @@ public class Actor : MonoBehaviour{
 
 
         // Attach methods to events
-        foreach (int _event in ActorMethods)
+        foreach (int method in ActorMethods)
         {
-            switch (_event)
-            {
-                case ActorEvent.Nothing:
-                    // Nothing on event 0
-                    Methods.Add(null);
-                    break;
-                ////////////////
-                //Keys
-                case ActorEvent.KeyW:
-                    // Debug on event 1
-                    Methods.Add(DoLog);
-                    break;
-                case ActorEvent.KeyA:
-                    // Debug on event 2
-                    Methods.Add(DoLog);
-                    break;
-                case ActorEvent.KeyS:
-                    // Debug on event 3
-                    Methods.Add(DoLog);
-                    break;
-                case ActorEvent.KeyD:
-                    // Debug on event 4
-                    Methods.Add(DoLog);
-                    break;
-                case ActorEvent.KeySpace:
-                    // Debug on event 5
-                    Methods.Add(DoLog);
-                    break;
-                ////////////////
-                //Mouse
-                case ActorEvent.MouseLeft:
-                    // Debug on event 6
-                    Methods.Add(DoLog);
-                    break;
-                case ActorEvent.MouseRight:
-                    // Debug on event 7
-                    Methods.Add(DoLog);
-                    break;
-                ////////////////
-                //General
-                case ActorEvent.TimerTick:
-                    // Debug on event 8
-                    Methods.Add(DoLog);
-                    break;
-                case ActorEvent.CollisionOccurrence:
-                    // Debug on event 9
-                    Methods.Add(DoLog);
-                    break;
-                ////////////////
-                //Comparisons
-                case ActorEvent.ComparisonLT:
-                    // Debug on event 10
-                    Methods.Add(DoLog);
-                    break;
-                case ActorEvent.ComparisonGT:
-                    // Debug on event 11
-                    Methods.Add(DoLog);
-                    break;
-                case ActorEvent.ComparisonLTE:
-                    // Debug on event 12
-                    Methods.Add(DoLog);
-                    break;
-                case ActorEvent.ComparisonGTE:
-                    // Debug on event 13
-                    Methods.Add(DoLog);
-                    break;
-                case ActorEvent.ComparisonEQ:
-                    // Debug on event 14
-                    Methods.Add(DoLog);
-                    break;
-                case ActorEvent.ComparisonNEQ:
-                    // Debug on event 15
-                    Methods.Add(DoLog);
-                    break;
-                default:
-                    Methods.Add(null);
-                    break;
-            }
+            Methods.Add(GMgr.GetMethod(method, this));
         }
 
         //timer
@@ -178,18 +101,13 @@ public class Actor : MonoBehaviour{
         }
     }
     
-
-    private void DoLog()
-    {
-        Debug.Log(String.Format("Actor/DoLog: Actor #{0} says HI", ID));
-    }
    
     public void OnW()
     {
         Debug.Log("Actor/DoW: Event fired");
         if (Methods.Count > ActorEvent.KeyW && Methods[ActorEvent.KeyW] != null)
         {
-            Methods[ActorEvent.KeyW]();
+            Methods[ActorEvent.KeyW](this);
         }
     }
 
@@ -198,7 +116,7 @@ public class Actor : MonoBehaviour{
         Debug.Log("Actor/DoA: Event fired");
         if (Methods.Count > ActorEvent.KeyA && Methods[ActorEvent.KeyA] != null)
         {
-            Methods[ActorEvent.KeyA]();
+            Methods[ActorEvent.KeyA](this);
         }
     }
 
@@ -207,7 +125,7 @@ public class Actor : MonoBehaviour{
         Debug.Log("Actor/DoS: Event fired");
         if (Methods.Count > ActorEvent.KeyS && Methods[ActorEvent.KeyS] != null)
         {
-            Methods[ActorEvent.KeyS]();
+            Methods[ActorEvent.KeyS](this);
         }
     }
 
@@ -216,7 +134,7 @@ public class Actor : MonoBehaviour{
         Debug.Log("Actor/DoD: Event fired");
         if (Methods.Count > ActorEvent.KeyD && Methods[ActorEvent.KeyD] != null)
         {
-            Methods[ActorEvent.KeyD]();
+            Methods[ActorEvent.KeyD](this);
         }
     }
 
@@ -225,7 +143,7 @@ public class Actor : MonoBehaviour{
         Debug.Log("Actor/DoSpace: Event fired");
         if (Methods.Count > ActorEvent.KeySpace && Methods[ActorEvent.KeySpace] != null)
         {
-            Methods[ActorEvent.KeySpace]();
+            Methods[ActorEvent.KeySpace](this);
         }
     }
 
@@ -234,7 +152,7 @@ public class Actor : MonoBehaviour{
         Debug.Log("Actor/DoLeftClick: Event fired");
         if (Methods.Count > ActorEvent.MouseLeft && Methods[ActorEvent.MouseLeft] != null)
         {
-            Methods[ActorEvent.MouseLeft]();
+            Methods[ActorEvent.MouseLeft](this);
         }
     }
 
@@ -243,7 +161,7 @@ public class Actor : MonoBehaviour{
         Debug.Log("Actor/DoRightClick: Event fired");
         if (Methods.Count > ActorEvent.MouseRight && Methods[ActorEvent.MouseRight] != null)
         {
-            Methods[ActorEvent.MouseRight]();
+            Methods[ActorEvent.MouseRight](this);
         }
     }
     // this need work
@@ -253,7 +171,7 @@ public class Actor : MonoBehaviour{
         if (Methods.Count > ActorEvent.TimerTick && Methods[ActorEvent.TimerTick] != null)
         {
             Debug.Log("suck my balls");
-            Methods[ActorEvent.TimerTick]();
+            Methods[ActorEvent.TimerTick](this);
         }
     }
 
@@ -262,7 +180,7 @@ public class Actor : MonoBehaviour{
         Debug.Log("Actor/CollisionOccured: Event fired");
         if (Methods.Count > ActorEvent.CollisionOccurrence && Methods[ActorEvent.CollisionOccurrence] != null)
         {
-            Methods[ActorEvent.CollisionOccurrence]();
+            Methods[ActorEvent.CollisionOccurrence](this);
         }
     }
 
@@ -271,7 +189,7 @@ public class Actor : MonoBehaviour{
         Debug.Log("Actor/ComparisonLesserThan: Event fired");
         if (Methods.Count > ActorEvent.ComparisonLT && Methods[ActorEvent.ComparisonLT] != null)
         {
-            Methods[ActorEvent.ComparisonLT]();
+            Methods[ActorEvent.ComparisonLT](this);
         }
     }
 
@@ -280,7 +198,7 @@ public class Actor : MonoBehaviour{
         Debug.Log("Actor/ComparisonGreaterThan: Event fired");
         if (Methods.Count > ActorEvent.ComparisonGT && Methods[ActorEvent.ComparisonGT] != null)
         {
-            Methods[ActorEvent.ComparisonGT]();
+            Methods[ActorEvent.ComparisonGT](this);
         }
     }
 
@@ -289,7 +207,7 @@ public class Actor : MonoBehaviour{
         Debug.Log("Actor/ComparisonLesserThanEqualTo: Event fired");
         if (Methods.Count > ActorEvent.ComparisonLTE && Methods[ActorEvent.ComparisonLTE] != null)
         {
-            Methods[ActorEvent.ComparisonLTE]();
+            Methods[ActorEvent.ComparisonLTE](this);
         }
     }
 
@@ -298,7 +216,7 @@ public class Actor : MonoBehaviour{
         Debug.Log("Actor/ComparisonGreaterThanEqualTo: Event fired");
         if (Methods.Count > ActorEvent.ComparisonGTE && Methods[ActorEvent.ComparisonGTE] != null)
         {
-            Methods[ActorEvent.ComparisonGTE]();
+            Methods[ActorEvent.ComparisonGTE](this);
         }
     }
 
@@ -307,7 +225,7 @@ public class Actor : MonoBehaviour{
         Debug.Log("Actor/ComparisonEqualTo: Event fired");
         if (Methods.Count > ActorEvent.ComparisonEQ && Methods[ActorEvent.ComparisonEQ] != null)
         {
-            Methods[ActorEvent.ComparisonEQ]();
+            Methods[ActorEvent.ComparisonEQ](this);
         }
     }
 
@@ -316,7 +234,7 @@ public class Actor : MonoBehaviour{
         Debug.Log("Actor/ComparisonNotEqualTo: Event fired");
         if (Methods.Count > ActorEvent.ComparisonNEQ && Methods[ActorEvent.ComparisonNEQ] != null)
         {
-            Methods[ActorEvent.ComparisonNEQ]();
+            Methods[ActorEvent.ComparisonNEQ](this);
         }
     }
     public void OnDestroy()
@@ -324,7 +242,7 @@ public class Actor : MonoBehaviour{
         Debug.Log("Actor/DoW: Event fired");
         if (Methods.Count > ActorEvent.KeyW && Methods[ActorEvent.KeyW] != null)
         {
-            Methods[ActorEvent.KeyW]();
+            Methods[ActorEvent.KeyW](this);
         }
     }
 }

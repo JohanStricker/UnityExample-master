@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using System;
 using System.Linq;
 using System.Collections;
 using System.Collections.Generic;
@@ -20,6 +21,8 @@ public class GameManager : MonoBehaviour {
     public int NumNonExistantActorsRemoved = 0;
     public int NumActorsAddedOnStatic = 0;
     public int NumActorsAddedOutsideMap = 0;
+
+    public List<Method> Methods = new List<Method>();
 
     public MapGeneration mapGen;
  
@@ -56,7 +59,7 @@ public class GameManager : MonoBehaviour {
         // Instantiate and add gameobject
         ActorGameobjs.Add(Instantiate(ActorPrefab, new Vector3(pos.x + (mapGen.scaleFactor/2), pos.y + (mapGen.scaleFactor / 2), 0), Quaternion.identity) as GameObject);
         Actors.Add(ActorGameobjs.Last().GetComponent<Actor>());
-        Actors.Last().Setup(ActorBlueprints[whichActor], NumActors, pos);
+        Actors.Last().Setup(ActorBlueprints[whichActor], NumActors, pos, this);
         Actors.Last().ID = NumActors;
         Actors.Last().Type = whichActor;
         NumActors++;
@@ -80,6 +83,21 @@ public class GameManager : MonoBehaviour {
         ActorGameobjs.RemoveAt(whichActor);
     }
     
+    public Action<Actor> GetMethod(int whichMethod, Actor fromActor)
+    {
+        if (whichMethod < 0 || whichMethod >= Methods.Count)
+        {
+            return null;
+        }
+
+        return Methods[whichMethod].Do;
+    }
+
+    public void EndGame()
+    {
+        Debug.Log("Game Ended");
+        Time.timeScale = 0.0f;
+    }
     
     void Awake() {
         GameGen.Instance.GMgr = this;

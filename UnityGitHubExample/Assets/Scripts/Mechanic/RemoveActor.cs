@@ -3,7 +3,7 @@ using System.Collections;
 
 public class RemoveActor : Method {
     
-    public override void Do(ref Actor fromActor)
+    public override void Do(Actor fromActor)
     {
         // GameManager.Instance.RemoveActor(ref a);
         int whichActor = 0;
@@ -21,9 +21,9 @@ public class RemoveActor : Method {
                 }
                 break;
             case MethodVariableLocation.CallingActor:
-                if (InputLocationNumbers[0] < CallingActor.FVariables.Count)
+                if (InputLocationNumbers[0] < fromActor.FVariables.Count)
                 {
-                    whichActor = (int)CallingActor.FVariables[InputLocationNumbers[0]];
+                    whichActor = (int)fromActor.FVariables[InputLocationNumbers[0]];
                 }
                 break;
             case MethodVariableLocation.Global:

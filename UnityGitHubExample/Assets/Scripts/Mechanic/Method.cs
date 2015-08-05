@@ -34,9 +34,10 @@ public class Method
         // Construct
     }
 
-    public virtual void Do(ref Actor fromActor)
+    public virtual void Do(Actor fromActor)
     {
         // Do the method
-        CallingActor = fromActor;
+        //CallingActor = fromActor;
     }
+    
 }
