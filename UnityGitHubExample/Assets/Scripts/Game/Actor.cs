@@ -41,8 +41,9 @@ public class Actor : MonoBehaviour{
 
     public int ID;
     List<Action> Methods;
+    public Timer Timer;
 
-    public void Setup(List<int> Blueprints)
+    public void Setup(List<int> Blueprints, float TimerDuration)
     {
         Methods = new List<Action>();
         foreach (int method in Blueprints)
@@ -126,6 +127,8 @@ public class Actor : MonoBehaviour{
                     break;
             }
         }
+        Timer = new Timer(TimerDuration);
+        Timer.Start();
     }
 
     private void DoLog()
