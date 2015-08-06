@@ -1,6 +1,8 @@
 ﻿using UnityEngine;
 using System.Collections;
 
+
+
 public sealed class GlobalConstants {
     private static readonly GlobalConstants instance = new GlobalConstants();
 

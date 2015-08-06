@@ -45,7 +45,7 @@ public class Method
         // Construct
     }
 
-    public virtual void Do(Actor fromActor)
+    public virtual void Do(Actor fromActor, int _eventType)
     {
         // Do the method
         //CallingActor = fromActor;

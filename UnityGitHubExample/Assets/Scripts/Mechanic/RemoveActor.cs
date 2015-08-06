@@ -3,8 +3,9 @@ using System.Collections;
 
 public class RemoveActor : Method {
     
-    public override void Do(Actor fromActor)
+    public override void Do(Actor fromActor, int _eventType)
     {
+        base.Do(fromActor, _eventType);
         // GameManager.Instance.RemoveActor(ref a);
         int whichActor = 0;
 

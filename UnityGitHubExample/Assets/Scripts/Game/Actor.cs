@@ -31,6 +31,8 @@ public struct ActorEvent
     public const int ComparisonEQ = 14;
     public const int ComparisonNEQ = 15;
 
+    public const int Destroy = 16;
+
 
 }
 
@@ -41,13 +43,11 @@ public class Actor : MonoBehaviour{
     public List<Vector2> VVariables;        // | Loc        | CollidesWith   g h i
 
 
-    public Vector2 UserMoveDir;
-
     public bool HasInput;
 
     public int ID;
     public int Type;
-    List<Action<Actor>> Methods;
+    List<Action<Actor,int>> Methods;
     public Timer Timer;
 
     public void Setup(List<int> Blueprints, int ID, Vector2 Loc, GameManager GMgr)
@@ -65,7 +65,7 @@ public class Actor : MonoBehaviour{
         VVariables = new List<Vector2>();
         VVariables.Add(Loc);
 
-        Methods = new List<Action<Actor>>();
+        Methods = new List<Action<Actor,int>>();
 
         // Split blueprint into methods and variables
         List<int> ActorMethods = Blueprints.GetRange(0, GlobalConstants.ActorBlueprintEventCount);
@@ -126,10 +126,7 @@ public class Actor : MonoBehaviour{
         Debug.Log("Actor/DoW: Event fired");
         if (Methods.Count > ActorEvent.KeyW && Methods[ActorEvent.KeyW] != null)
         {
-            Methods[ActorEvent.KeyW](this);
-
-            // Common sense movement
-            UserMoveDir = Vector2.up;
+            Methods[ActorEvent.KeyW](this, ActorEvent.KeyW);
         }
     }
 
@@ -138,10 +135,7 @@ public class Actor : MonoBehaviour{
         Debug.Log("Actor/DoA: Event fired");
         if (Methods.Count > ActorEvent.KeyA && Methods[ActorEvent.KeyA] != null)
         {
-            Methods[ActorEvent.KeyA](this);
-
-            // Common sense movement
-            UserMoveDir = Vector2.right * -1;
+            Methods[ActorEvent.KeyA](this, ActorEvent.KeyA);
         }
     }
 
@@ -150,10 +144,7 @@ public class Actor : MonoBehaviour{
         Debug.Log("Actor/DoS: Event fired");
         if (Methods.Count > ActorEvent.KeyS && Methods[ActorEvent.KeyS] != null)
         {
-            Methods[ActorEvent.KeyS](this);
-
-            // Common sense movement
-            UserMoveDir = Vector2.up * -1;
+            Methods[ActorEvent.KeyS](this, ActorEvent.KeyS);
         }
     }
 
@@ -162,10 +153,7 @@ public class Actor : MonoBehaviour{
         Debug.Log("Actor/DoD: Event fired");
         if (Methods.Count > ActorEvent.KeyD && Methods[ActorEvent.KeyD] != null)
         {
-            Methods[ActorEvent.KeyD](this);
-
-            // Common sense movement
-            UserMoveDir = Vector2.right;
+            Methods[ActorEvent.KeyD](this, ActorEvent.KeyD);
         }
     }
 
@@ -174,7 +162,7 @@ public class Actor : MonoBehaviour{
         Debug.Log("Actor/DoSpace: Event fired");
         if (Methods.Count > ActorEvent.KeySpace && Methods[ActorEvent.KeySpace] != null)
         {
-            Methods[ActorEvent.KeySpace](this);
+            Methods[ActorEvent.KeySpace](this, ActorEvent.KeySpace);
         }
     }
 
@@ -183,7 +171,7 @@ public class Actor : MonoBehaviour{
         Debug.Log("Actor/DoLeftClick: Event fired");
         if (Methods.Count > ActorEvent.MouseLeft && Methods[ActorEvent.MouseLeft] != null)
         {
-            Methods[ActorEvent.MouseLeft](this);
+            Methods[ActorEvent.MouseLeft](this, ActorEvent.MouseLeft);
         }
     }
 
@@ -192,7 +180,7 @@ public class Actor : MonoBehaviour{
         Debug.Log("Actor/DoRightClick: Event fired");
         if (Methods.Count > ActorEvent.MouseRight && Methods[ActorEvent.MouseRight] != null)
         {
-            Methods[ActorEvent.MouseRight](this);
+            Methods[ActorEvent.MouseRight](this, ActorEvent.MouseRight);
         }
     }
     // this need work
@@ -202,7 +190,7 @@ public class Actor : MonoBehaviour{
         if (Methods.Count > ActorEvent.TimerTick && Methods[ActorEvent.TimerTick] != null)
         {
             Debug.Log("suck my balls");
-            Methods[ActorEvent.TimerTick](this);
+            Methods[ActorEvent.TimerTick](this, ActorEvent.TimerTick);
         }
     }
 
@@ -211,7 +199,7 @@ public class Actor : MonoBehaviour{
         Debug.Log("Actor/CollisionOccured: Event fired");
         if (Methods.Count > ActorEvent.CollisionOccurrence && Methods[ActorEvent.CollisionOccurrence] != null)
         {
-            Methods[ActorEvent.CollisionOccurrence](this);
+            Methods[ActorEvent.CollisionOccurrence](this, ActorEvent.CollisionOccurrence);
         }
     }
 
@@ -220,7 +208,7 @@ public class Actor : MonoBehaviour{
         Debug.Log("Actor/ComparisonLesserThan: Event fired");
         if (Methods.Count > ActorEvent.ComparisonLT && Methods[ActorEvent.ComparisonLT] != null)
         {
-            Methods[ActorEvent.ComparisonLT](this);
+            Methods[ActorEvent.ComparisonLT](this, ActorEvent.ComparisonLT);
         }
     }
 
@@ -229,7 +217,7 @@ public class Actor : MonoBehaviour{
         Debug.Log("Actor/ComparisonGreaterThan: Event fired");
         if (Methods.Count > ActorEvent.ComparisonGT && Methods[ActorEvent.ComparisonGT] != null)
         {
-            Methods[ActorEvent.ComparisonGT](this);
+            Methods[ActorEvent.ComparisonGT](this, ActorEvent.ComparisonGT);
         }
     }
 
@@ -238,7 +226,7 @@ public class Actor : MonoBehaviour{
         Debug.Log("Actor/ComparisonLesserThanEqualTo: Event fired");
         if (Methods.Count > ActorEvent.ComparisonLTE && Methods[ActorEvent.ComparisonLTE] != null)
         {
-            Methods[ActorEvent.ComparisonLTE](this);
+            Methods[ActorEvent.ComparisonLTE](this, ActorEvent.ComparisonLTE);
         }
     }
 
@@ -247,7 +235,7 @@ public class Actor : MonoBehaviour{
         Debug.Log("Actor/ComparisonGreaterThanEqualTo: Event fired");
         if (Methods.Count > ActorEvent.ComparisonGTE && Methods[ActorEvent.ComparisonGTE] != null)
         {
-            Methods[ActorEvent.ComparisonGTE](this);
+            Methods[ActorEvent.ComparisonGTE](this, ActorEvent.ComparisonGTE);
         }
     }
 
@@ -256,7 +244,7 @@ public class Actor : MonoBehaviour{
         Debug.Log("Actor/ComparisonEqualTo: Event fired");
         if (Methods.Count > ActorEvent.ComparisonEQ && Methods[ActorEvent.ComparisonEQ] != null)
         {
-            Methods[ActorEvent.ComparisonEQ](this);
+            Methods[ActorEvent.ComparisonEQ](this, ActorEvent.ComparisonEQ);
         }
     }
 
@@ -265,7 +253,7 @@ public class Actor : MonoBehaviour{
         Debug.Log("Actor/ComparisonNotEqualTo: Event fired");
         if (Methods.Count > ActorEvent.ComparisonNEQ && Methods[ActorEvent.ComparisonNEQ] != null)
         {
-            Methods[ActorEvent.ComparisonNEQ](this);
+            Methods[ActorEvent.ComparisonNEQ](this, ActorEvent.ComparisonNEQ);
         }
     }
     public void OnDestroy()
@@ -273,7 +261,7 @@ public class Actor : MonoBehaviour{
         Debug.Log("Actor/DoW: Event fired");
         if (Methods.Count > ActorEvent.KeyW && Methods[ActorEvent.KeyW] != null)
         {
-            Methods[ActorEvent.KeyW](this);
+            Methods[ActorEvent.Destroy](this, ActorEvent.Destroy);
         }
     }
 }

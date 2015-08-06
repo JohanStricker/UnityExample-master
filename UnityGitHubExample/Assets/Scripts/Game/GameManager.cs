@@ -21,6 +21,9 @@ public class GameManager : MonoBehaviour {
     public int NumNonExistantActorsRemoved = 0;
     public int NumActorsAddedOnStatic = 0;
     public int NumActorsAddedOutsideMap = 0;
+
+    public int NumTimesActorMoveImpossibleDir = 0;
+    public int NumTimesNonExistantActorMoved = 0;
     
     public List<Method> Methods = new List<Method>();
 
@@ -82,12 +85,51 @@ public class GameManager : MonoBehaviour {
         ActorGameobjs.RemoveAt(whichActor);
     }
 
-    public void MoveActor(int whichActor, Vector2 dir)
+    public void MoveActor(int whichActor, float dir)
     {
-        if (whichActor < 0 || whichActor > Actors.Count)
-            return;
+        Vector2 vDir = new Vector2();
 
-        Vector2 newPos = Actors[whichActor].VVariables[0] + dir;
+        if (whichActor < 0 || whichActor > Actors.Count)
+        {
+            NumTimesNonExistantActorMoved++;
+            return;
+        }
+
+        switch ((int) dir)
+        {
+            case MovementDirection.N:
+                vDir = new Vector2(0, 1);
+                break;
+            case MovementDirection.NE:
+                vDir = new Vector2(1, 1);
+                break;
+            case MovementDirection.E:
+                vDir = new Vector2(1, 0);
+                break;
+            case MovementDirection.SE:
+                vDir = new Vector2(1, -1);
+                break;
+            case MovementDirection.S:
+                vDir = new Vector2(0, -1);
+                break;
+            case MovementDirection.SW:
+                vDir = new Vector2(-1, -1);
+                break;
+            case MovementDirection.W:
+                vDir = new Vector2(-1, 0);
+                break;
+            case MovementDirection.NW:
+                vDir = new Vector2(-1, 1);
+                break;
+            default:
+                Debug.Log("GameManager/MoveActor: Impossible case reached...");
+                NumTimesActorMoveImpossibleDir++;
+                return;
+                break;
+        }
+
+
+        Vector2 newPos = Actors[whichActor].VVariables[0] + vDir;
 
         if (mapGen.IsWallAt((int)newPos.x, (int)newPos.y))
             return;
@@ -130,7 +172,7 @@ public class GameManager : MonoBehaviour {
         Methods.Last().Constants =  methodBlueprint.GetRange(10, 3).Select(i => (float)i).ToList();
     }
 
-    public Action<Actor> GetMethod(int whichMethod, Actor fromActor)
+    public Action<Actor,int> GetMethod(int whichMethod, Actor fromActor)
     {
         // Get the correct method. 0 means no method, means null.
         if (whichMethod < 1 || whichMethod >= Methods.Count+1)

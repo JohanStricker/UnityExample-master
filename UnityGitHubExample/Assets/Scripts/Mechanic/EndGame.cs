@@ -3,9 +3,9 @@ using System.Collections;
 
 public class EndGame : Method {
 
-    public override void Do(Actor fromActor)
+    public override void Do(Actor fromActor, int _eventType)
     {
-        base.Do(fromActor);
+        base.Do(fromActor, _eventType);
         GMgr.EndGame();
     }
 
