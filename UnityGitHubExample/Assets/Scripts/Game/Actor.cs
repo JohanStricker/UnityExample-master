@@ -10,28 +10,26 @@ using System.Collections.Generic;
 
 public struct ActorEvent
 {
-    public const int Nothing = 0;
+    public const int KeyW = 0;
+    public const int KeyA = 1;
+    public const int KeyS = 2;
+    public const int KeyD = 3;
+    public const int KeySpace = 4;
 
-    public const int KeyW = 1;
-    public const int KeyA = 2;
-    public const int KeyS = 3;
-    public const int KeyD = 4;
-    public const int KeySpace = 5;
+    public const int MouseLeft = 5;
+    public const int MouseRight = 6;
 
-    public const int MouseLeft = 6;
-    public const int MouseRight = 7;
+    public const int TimerTick = 7;
+    public const int CollisionOccurrence = 8;
 
-    public const int TimerTick = 8;
-    public const int CollisionOccurrence = 9;
+    public const int ComparisonLT = 9;
+    public const int ComparisonGT = 10;
+    public const int ComparisonLTE = 11;
+    public const int ComparisonGTE = 12;
+    public const int ComparisonEQ = 13;
+    public const int ComparisonNEQ = 14;
 
-    public const int ComparisonLT = 10;
-    public const int ComparisonGT = 11;
-    public const int ComparisonLTE = 12;
-    public const int ComparisonGTE = 13;
-    public const int ComparisonEQ = 14;
-    public const int ComparisonNEQ = 15;
-
-    public const int Destroy = 16;
+    public const int Destroy = 15;
 
 
 }
