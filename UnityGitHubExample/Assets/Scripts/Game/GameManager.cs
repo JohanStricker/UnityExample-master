@@ -94,7 +94,7 @@ public class GameManager : MonoBehaviour {
 
         ActorGameobjs[whichActor].transform.position = newPos;
 
-        CollisionCheck();
+        this.GetComponent<CollisionEvent>().CollisionCheck();
     }
     
     public void AddMethod(List<int> methodBlueprint)
@@ -147,33 +147,7 @@ public class GameManager : MonoBehaviour {
         Debug.Log("Game Ended");
         Time.timeScale = 0.0f;
     }
-
-    public void CollisionCheck() {
-        for (int i = 0; i<Actors.Count()-1;i++)
-        {
-            for (int j = 0; j < Actors.Count() - 1; j++)
-            {
-                //self id check
-                if (Actors[i].ID == Actors[j].ID)
-                    continue;
-
-                //possition check
-                if (Actors[i].VVariables[0] == Actors[j].VVariables[0])
-                {
-                    //actor type check
-                    if (Actors[i].VVariables[1].x == Actors[j].Type || Actors[i].VVariables[1].y == Actors[j].Type)
-                    {
-                        //then Actors[i].OnCollision(with actor[j]);
-                        Actors[i].OnCollision();
-                    }
-                }
-                
-            }
-        }
-
-
-    }
-    
+        
     void Awake() {
         GameGen.Instance.GMgr = this;
     }
