@@ -7,7 +7,10 @@ public class GeneTest : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 
+
+
         Genome g = new Genome();
+        g.EndEvents = new List<int>();
         g.ActorBlueprints = new List<List<int>>();
         g.ActorBlueprints.Add(new List<int>());
         g.ActorBlueprints.Add(new List<int>());
@@ -15,7 +18,16 @@ public class GeneTest : MonoBehaviour {
         g.ActorCounts = new List<int>();
         g.Locations = new List<int>();
 
-        //actor
+
+        //EndEvent
+        //the  actor
+        g.EndEvents.Add(2);
+        //the event
+        g.EndEvents.Add(9);
+        //end of EndEvent
+
+        //first actor
+        //events
         g.ActorBlueprints[0].Add(0);
         g.ActorBlueprints[0].Add(0);
         g.ActorBlueprints[0].Add(0);
@@ -32,20 +44,19 @@ public class GeneTest : MonoBehaviour {
         g.ActorBlueprints[0].Add(0);
         g.ActorBlueprints[0].Add(0);
         g.ActorBlueprints[0].Add(0);
-        //variables
-        
-        //bool
+             
+        //bool(4)
         g.ActorBlueprints[0].Add(0);
         g.ActorBlueprints[0].Add(0);
         g.ActorBlueprints[0].Add(0);
         g.ActorBlueprints[0].Add(0);
-        //floats
+        //floats(4)
         g.ActorBlueprints[0].Add(0);
         g.ActorBlueprints[0].Add(0);
         g.ActorBlueprints[0].Add(0);
         g.ActorBlueprints[0].Add(0);
 
-        //vectors
+        //vectors(4 sets of 2)
         g.ActorBlueprints[0].Add(0);
         g.ActorBlueprints[0].Add(0);
 
@@ -57,31 +68,6 @@ public class GeneTest : MonoBehaviour {
 
         g.ActorBlueprints[0].Add(0);
         g.ActorBlueprints[0].Add(0);
-
-        //global variables
-        //bool
-        g.GlobalVariables.Add(0);
-        g.GlobalVariables.Add(0);
-        g.GlobalVariables.Add(0);
-        g.GlobalVariables.Add(0);
-        g.GlobalVariables.Add(0);
-        //float
-        g.GlobalVariables.Add(0);
-        g.GlobalVariables.Add(0);
-        g.GlobalVariables.Add(0);
-        g.GlobalVariables.Add(0);
-        g.GlobalVariables.Add(0);
-        //vector2d
-        g.GlobalVariables.Add(0);
-        g.GlobalVariables.Add(0);
-        g.GlobalVariables.Add(0);
-        g.GlobalVariables.Add(0);
-        g.GlobalVariables.Add(0);
-        g.GlobalVariables.Add(0);
-        g.GlobalVariables.Add(0);
-        g.GlobalVariables.Add(0);
-        g.GlobalVariables.Add(0);
-        g.GlobalVariables.Add(0);
         //end of first actor
 
 
@@ -139,7 +125,30 @@ public class GeneTest : MonoBehaviour {
         g.Locations.Add(Random.Range(0, 33));
         g.Locations.Add(Random.Range(0, 33));
 
-
+        //global variables
+        //bool
+        g.GlobalVariables.Add(0);
+        g.GlobalVariables.Add(0);
+        g.GlobalVariables.Add(0);
+        g.GlobalVariables.Add(0);
+        g.GlobalVariables.Add(0);
+        //float
+        g.GlobalVariables.Add(0);
+        g.GlobalVariables.Add(0);
+        g.GlobalVariables.Add(0);
+        g.GlobalVariables.Add(0);
+        g.GlobalVariables.Add(0);
+        //vector2d
+        g.GlobalVariables.Add(0);
+        g.GlobalVariables.Add(0);
+        g.GlobalVariables.Add(0);
+        g.GlobalVariables.Add(0);
+        g.GlobalVariables.Add(0);
+        g.GlobalVariables.Add(0);
+        g.GlobalVariables.Add(0);
+        g.GlobalVariables.Add(0);
+        g.GlobalVariables.Add(0);
+        g.GlobalVariables.Add(0);
 
         GameGen.Instance.GenerateGame(g);
 
