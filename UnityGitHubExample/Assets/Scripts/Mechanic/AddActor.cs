@@ -6,6 +6,7 @@ public class AddActor : Method {
     
 	public AddActor()
     {
+        Type = MethodType.AddActor;
     }
 
     public override void Do(Actor fromActor, int _eventType)
@@ -14,6 +15,7 @@ public class AddActor : Method {
         // Second input is vector for location
         // Third input is the other actor 
         base.Do(fromActor, _eventType);
+
 
         int BlueprintToSpawn = -1;
         Vector2 Loc = new Vector2();

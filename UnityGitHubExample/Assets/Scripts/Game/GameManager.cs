@@ -7,6 +7,8 @@ using System.Collections.Generic;
 public class GameManager : MonoBehaviour {
 
 
+    public List<int> EndEvents;
+
     public GameObject ActorPrefab;
     public List<List<int>> ActorBlueprints = new List<List<int>>();  // Do somehow else than Actor class list
 
@@ -26,8 +28,10 @@ public class GameManager : MonoBehaviour {
     public int NumTimesNonExistantActorMoved = 0;
     
     public List<Method> Methods = new List<Method>();
+    public Method End = new EndGame();
 
     public MapGeneration mapGen;
+    
  
 
     public void AddActor(int whichActor, Vector2 pos)
@@ -61,10 +65,18 @@ public class GameManager : MonoBehaviour {
         //ActorGameobjs.Add(Instantiate(ActorPrefab, new Vector3(pos.x + (mapGen.scaleFactor/2), pos.y + (mapGen.scaleFactor / 2), 0), Quaternion.identity) as GameObject);
         ActorGameobjs.Add(Instantiate(ActorPrefab, new Vector3(pos.x, pos.y, 0), Quaternion.identity) as GameObject);
         Actors.Add(ActorGameobjs.Last().GetComponent<Actor>());
-        Actors.Last().Setup(ActorBlueprints[whichActor], NumActors, pos, this);
         Actors.Last().ID = NumActors;
         Actors.Last().Type = whichActor;
+        Actors.Last().Setup(ActorBlueprints[whichActor], NumActors, pos, this);
         NumActors++;
+
+        // Check if should replace event method with end
+        if (Actors.Last().Type == EndEvents[0])
+        {
+            Actors.Last().Methods[EndEvents[1]] = End.Do;
+            Debug.Log(String.Format("GameManager/AddActor: End event added to actor #{0} on event {1}", Actors.Last().ID, EndEvents[1]));
+        }
+
         // Tie events to methods/mechanics
         Debug.Log("GameManager/AddActor: Actor added");
     }
@@ -83,6 +95,8 @@ public class GameManager : MonoBehaviour {
         Destroy(ActorGameobjs[whichActor]);
         Actors.RemoveAt(whichActor);
         ActorGameobjs.RemoveAt(whichActor);
+
+        Debug.Log("GameManager/RemoveActor: Actor removed");
     }
 
     public void MoveActor(int whichActor, float dir)
@@ -134,7 +148,11 @@ public class GameManager : MonoBehaviour {
         if (mapGen.IsWallAt((int)newPos.x, (int)newPos.y))
             return;
 
+        Debug.Log(string.Format("GameManager/MoveActor: Moved actor #{0} from ({1},{2}) to ({3},{4})", Actors[whichActor].ID, Actors[whichActor].VVariables[0].x
+                                                                                                    ,Actors[whichActor].VVariables[0].y, newPos.x, newPos.y));
+
         ActorGameobjs[whichActor].transform.position = newPos;
+        Actors[whichActor].VVariables[0] = newPos;
 
         this.GetComponent<CollisionEvent>().CollisionCheck();
     }
@@ -146,9 +164,9 @@ public class GameManager : MonoBehaviour {
             case MethodType.Null:
                 Methods.Add(null);
                 break;
-            case MethodType.EndGame:
-                Methods.Add(new EndGame());
-                break;
+           // case MethodType.EndGame:
+            //    Methods.Add(new EndGame());
+             //   break;
             case MethodType.AddActor:
                 Methods.Add(new AddActor());
                 break;
@@ -170,6 +188,9 @@ public class GameManager : MonoBehaviour {
         Methods.Last().InputLocationNumbers = methodBlueprint.GetRange(6, 3);
         Methods.Last().OutputLocationNumber = methodBlueprint[9];
         Methods.Last().Constants =  methodBlueprint.GetRange(10, 3).Select(i => (float)i).ToList();
+        Methods.Last().GMgr = this;
+
+        Debug.Log(String.Format("GameManager/AddMethod: Method of type {0} added", methodBlueprint[0]));
     }
 
     public Action<Actor,int> GetMethod(int whichMethod, Actor fromActor)
@@ -180,6 +201,8 @@ public class GameManager : MonoBehaviour {
 
         if (Methods[whichMethod - 1] == null)
             return null;
+
+        Debug.Log(String.Format("GameManager/GetMethod: Method #{2} of type {0} returned to actor #{1}", Methods[whichMethod-1].Type, fromActor.ID, whichMethod));
 
         return Methods[whichMethod-1].Do;
     }
@@ -192,6 +215,7 @@ public class GameManager : MonoBehaviour {
         
     void Awake() {
         GameGen.Instance.GMgr = this;
+        End.GMgr = this;
     }
 
 	// Use this for initialization

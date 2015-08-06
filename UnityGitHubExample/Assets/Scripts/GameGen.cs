@@ -31,6 +31,10 @@ public sealed class GameGen  {
         Debug.Log("GameGen/Generate Game: Generating Game");
         // Generate game from genome
 
+        // Add end event
+        GMgr.EndEvents = g.EndEvents;
+
+
         // Add global variables
         
         GMgr.BVariables = new List<bool>();
@@ -51,6 +55,13 @@ public sealed class GameGen  {
             GMgr.VVariables.Add(new Vector2(g.GlobalVariables[i], g.GlobalVariables[++i]));
         }
         Debug.Log("GameGen/GenerateGame: Global variables added");
+
+        // Adding methods
+        foreach (List<int> method in g.MethodBlueprints)
+        {
+            GMgr.AddMethod(method);
+        }
+        Debug.Log("GameGen/GenerateGame: Methods added");
 
         // Add Actors
         foreach (List<int> blueprint in g.ActorBlueprints)
@@ -82,13 +93,6 @@ public sealed class GameGen  {
             }
         }
         Debug.Log("GameGen/GenerateGame: Actors added");
-
-        // Adding methods
-        foreach (List<int> method in g.MethodBlueprints)
-        {
-            GMgr.AddMethod(method);
-        }
-        Debug.Log("GameGen/GenerateGame: Methods added");
 
         Debug.Log("GameGen/GenerateGame: Game Generated");
     }

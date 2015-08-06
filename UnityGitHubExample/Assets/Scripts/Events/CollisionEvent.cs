@@ -24,6 +24,7 @@ public class CollisionEvent : MonoBehaviour {
                     {
                         //then Actors[i].OnCollision(with actor[j]);
                         GMgr.Actors[i].OnCollision();
+                        Debug.Log(string.Format("CollisionEvent/CollisionCheck: Actor {0} collides with {1}", i, j));
                     }
                 }
             }

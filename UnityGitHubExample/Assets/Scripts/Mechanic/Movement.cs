@@ -16,6 +16,12 @@ public struct MovementDirection
 
 public class Movement : Method {
 
+    public Movement()
+    {
+
+        Type = MethodType.Movement;
+    }
+
     public override void Do(Actor fromActor, int _eventType)
     {
         base.Do(fromActor, _eventType);
@@ -66,6 +72,8 @@ public class Movement : Method {
                 // Do nothing
                 break;
         }
+
+        Debug.Log(string.Format("Movement/Do: Moving actor #{0} in direction {1}", fromActor.ID, dir));
 
         GMgr.MoveActor(fromActor.ID, dir);
     }

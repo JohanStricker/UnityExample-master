@@ -15,23 +15,23 @@ public class KeyboardInput : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
                
-        if (Input.GetKeyDown(KeyCode.W))
+        if (Input.GetKeyUp(KeyCode.W))
         {
             GMgr.Actors.ForEach(p => p.OnW());
         }
-        if (Input.GetKeyDown(KeyCode.A))
+        if (Input.GetKeyUp(KeyCode.A))
         {
             GMgr.Actors.ForEach(p => p.OnA());
         }
-        if (Input.GetKeyDown(KeyCode.S))
+        if (Input.GetKeyUp(KeyCode.S))
         {
             GMgr.Actors.ForEach(p => p.OnS());
         }
-        if (Input.GetKeyDown(KeyCode.D))
+        if (Input.GetKeyUp(KeyCode.D))
         {
             GMgr.Actors.ForEach(p => p.OnD());
         }
-        if (Input.GetKeyDown(KeyCode.Space))
+        if (Input.GetKeyUp(KeyCode.Space))
         {
             GMgr.Actors.ForEach(p => p.OnSpace());
         }

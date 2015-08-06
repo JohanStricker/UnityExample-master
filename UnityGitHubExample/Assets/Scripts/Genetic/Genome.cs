@@ -58,6 +58,7 @@ public class Genome {
 
     public void Initiate(int seed)
     {
+        Debug.Log("Genome/Initiate: Initiating random genome");
         // Initiate genome with randomized values
         GenomeSeed = seed;
         Random.seed = seed;

@@ -46,7 +46,7 @@ public sealed class GlobalConstants {
 
     public const int MethodCountMin = 1;
     public const int MethodCountMax = 10;
-    public const int MethodNumTypes = 3;
+    public const int MethodNumTypes = 4;
     public const int MethodInputNumTypes = 3;
     public const int MethodOutputNumTypes = 3;
     public const int MethodConstantCount = 3;

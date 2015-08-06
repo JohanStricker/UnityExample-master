@@ -13,11 +13,11 @@ public struct MethodVariableLocation
 public struct MethodType
 {
     public const int Null = 0;
-    public const int EndGame = 1;
-    public const int AddActor = 2;
-    public const int RemoveActor = 3;
-    public const int Movement = 4;
-    public const int ChangeVariable = 5;
+   // public const int EndGame = 1;
+    public const int AddActor = 1;
+    public const int RemoveActor = 2;
+    public const int Movement = 3;
+    public const int ChangeVariable = 4;
 };
 
 public class Method
@@ -40,6 +40,8 @@ public class Method
 
     public int ID;
 
+    public int Type;
+
     public Method()
     {
         // Construct
@@ -49,6 +51,7 @@ public class Method
     {
         // Do the method
         //CallingActor = fromActor;
+        Debug.Log(string.Format("Method/Do: Method of type {0} called from event {1} at actor {2}", Type, _eventType, fromActor.ID));
     }
     
 }
